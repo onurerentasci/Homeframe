@@ -21,7 +21,27 @@ export default defineWidget({
 
 ## Durum
 
-**Faz 0 — planlama.** Henüz kod yok. Kod yazımı, `docs/02-sprint-plani.md` içindeki **S1 fizibilite kapısı** geçilmeden ürün geliştirmeye dönmez.
+**S0 — ön doğrulama ve iskelet devam ediyor.** Monorepo ve kalite kapısı
+kurulmuştur. Ürün koduna geçiş, `docs/02-sprint-plani.md` içindeki S0 çıkış
+kriterleri tamamlandıktan sonra; ürün taahhüdü ise **S1 fizibilite kapısı**
+geçildikten sonra yapılır.
+
+## Geliştirme
+
+Gereksinimler:
+
+- Node.js 24 veya üzeri
+- Java 17
+- pnpm 11.17.0 (`npx pnpm@11.17.0` ile de çalıştırılabilir)
+
+```sh
+npx pnpm@11.17.0 install
+npx pnpm@11.17.0 gate
+```
+
+`gate`; lint, TypeScript, birim/golden, plugin, Gradle, cihaz aşaması ve kapsam
+kontrollerini tek sırada çalıştırır. Henüz uygulanmayan S0-sonrası aşamalar
+başarılıymış gibi raporlanmaz; komut çıktısında açıkça `NOT_APPLICABLE` görünür.
 
 ## Doküman haritası
 
@@ -33,6 +53,8 @@ export default defineWidget({
 | [docs/04-sprint-kurallari.md](docs/04-sprint-kurallari.md) | **Sprint geçiş kuralları** — testle onaylanmadan sonraki sprinte geçilmez |
 | [docs/templates/sprint-raporu-sablonu.md](docs/templates/sprint-raporu-sablonu.md) | Her sprint kapısında doldurulan kanıt raporu şablonu |
 | [docs/reports/](docs/reports/) | Tamamlanan sprintlerin imzalı kapı raporları |
+| [docs/research/competitor-snapshot.md](docs/research/competitor-snapshot.md) | S0 rakip ve paket verisi doğrulaması |
+| [docs/research/interviews.md](docs/research/interviews.md) | Geliştirici görüşmesi protokolü ve sonuç tablosu |
 
 ## Lisans
 
