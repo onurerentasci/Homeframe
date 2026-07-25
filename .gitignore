@@ -26,3 +26,6 @@ local.properties
 test-results/
 playwright-report/
 !docs/reports/**
+
+# Geçici kapı sözleşmesi çalışma alanları
+.tmp-homeframe-*/

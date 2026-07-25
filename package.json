@@ -1,0 +1,33 @@
+{
+  "name": "homeframe",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Build real Android widgets for Expo without Kotlin, XML or bitmap rendering.",
+  "type": "module",
+  "packageManager": "pnpm@11.17.0",
+  "engines": {
+    "node": ">=24"
+  },
+  "scripts": {
+    "lint": "eslint . --max-warnings 0 && node scripts/check-test-policy.mjs",
+    "typecheck": "tsc --noEmit",
+    "test": "pnpm test:unit",
+    "test:unit": "vitest run --passWithNoTests",
+    "test:plugin": "vitest run --passWithNoTests packages/expo-plugin",
+    "test:android": "./gradlew test",
+    "test:device": "node scripts/report-unavailable-stage.mjs device",
+    "coverage": "vitest run --coverage --passWithNoTests",
+    "coverage:check": "pnpm coverage",
+    "gate": "pnpm lint && pnpm typecheck && pnpm test:unit && pnpm test:plugin && pnpm test:android && pnpm test:device && pnpm coverage:check"
+  },
+  "devDependencies": {
+    "@eslint/js": "10.0.1",
+    "@types/node": "24.13.3",
+    "@vitest/coverage-v8": "4.1.10",
+    "eslint": "10.8.0",
+    "globals": "17.7.0",
+    "typescript": "6.0.3",
+    "typescript-eslint": "8.65.0",
+    "vitest": "4.1.10"
+  }
+}
