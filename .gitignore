@@ -1,0 +1,28 @@
+node_modules/
+dist/
+build/
+coverage/
+.turbo/
+*.tsbuildinfo
+
+# Expo / RN
+.expo/
+android/
+ios/
+!examples/**/android/app/src/main/AndroidManifest.xml
+
+# Android
+*.apk
+*.aab
+local.properties
+.gradle/
+
+# OS / editor
+.DS_Store
+.idea/
+*.log
+
+# Test çıktıları (kapı kanıtları hariç)
+test-results/
+playwright-report/
+!docs/reports/**
