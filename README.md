@@ -54,7 +54,8 @@ başarılıymış gibi raporlanmaz; komut çıktısında açıkça `NOT_APPLICAB
 | [docs/templates/sprint-raporu-sablonu.md](docs/templates/sprint-raporu-sablonu.md) | Her sprint kapısında doldurulan kanıt raporu şablonu |
 | [docs/reports/](docs/reports/) | Tamamlanan sprintlerin imzalı kapı raporları |
 | [docs/research/competitor-snapshot.md](docs/research/competitor-snapshot.md) | S0 rakip ve paket verisi doğrulaması |
-| [docs/research/interviews.md](docs/research/interviews.md) | Geliştirici görüşmesi protokolü ve sonuç tablosu |
+| [docs/research/interviews.md](docs/research/interviews.md) | Kullanıcı tarafından sağlanan gerçek geliştirici görüşmeleri |
+| [docs/research/persona-simulation.md](docs/research/persona-simulation.md) | Gerçek araştırma öncesindeki sentetik persona simülasyonu |
 
 ## Lisans
 

@@ -30,14 +30,17 @@ Test kimliği biçimi: `HF-S<sprint>-T<no>`. Her test dosyası, karşıladığı
 
 **Kapsam**
 * `expo-widgets` ve `react-native-android-widget` sürüm/indirme sayılarını tazele (tez yeniden türetilmez, bkz. iş planı §2.1).
-* npm'de `homeframe` adının hâlâ boş olduğunu doğrula; kaydı al.
+* npm'de `homeframe` adının hâlâ boş olduğunu doğrula; kimliği doğrulanmış npm
+  hesabından erişimi test et ve kaydı al. npm'in isim işgali politikasına uygun
+  olarak işlevsiz placeholder paket yayımlama.
 * Teknik README ve API taslağını yayınla; RN/Expo topluluklarında geri bildirim topla.
 * En az 10 geliştiriciyle kısa görüşme; yanıtları `docs/research/interviews.md` içinde topla.
 * pnpm monorepo iskeleti: `packages/core`, `packages/codegen-android`, `packages/expo-plugin`, `packages/cli`, `runtime-android/`, `examples/basic`.
 * Test koşucuları ayağa kalksın: Vitest, tsc `--noEmit`, ESLint, Gradle test task, CI iş akışı.
 * `pnpm gate` komutu tanımlansın (bkz. kurallar §K3).
 
-**Çıktılar:** monorepo iskeleti · CI yeşil · README taslağı · görüşme notları · npm ad rezervasyonu.
+**Çıktılar:** monorepo iskeleti · CI yeşil · README taslağı · görüşme notları ·
+npm ad kullanılabilirlik ve yayın politikası kaydı.
 
 **Yazılacak testler**
 
@@ -48,9 +51,11 @@ Test kimliği biçimi: `HF-S<sprint>-T<no>`. Her test dosyası, karşıladığı
 | HF-S0-T03 | `tsc --noEmit` tüm workspace'te temiz | L0 |
 
 **Çıkış kriterleri**
-- [ ] CI, bilerek bozulan bir testte kırmızıya düşüyor ve düzeltilince yeşile dönüyor (ekran görüntüsü kanıt).
-- [ ] En az 10 görüşme kaydı var; "canlı sayaç önemli mi?" sorusuna **≥6 evet**.
-- [ ] Rakip sürüm bilgileri tazelenmiş ve iş planı §2.1 güncel.
+- [x] CI, bilerek bozulan bir testte kırmızıya düşüyor ve düzeltilince yeşile dönüyor (HF-S0-T02 otomatik sözleşme kanıtı).
+- [x] En az 10 görüşme kaydı var; "canlı sayaç önemli mi?" sorusuna **≥6 evet**.
+- [x] Rakip sürüm bilgileri tazelenmiş ve iş planı §2.1 güncel.
+- [x] `homeframe` adı kimliği doğrulanmış npm oturumundan kullanılabilir görünüyor;
+  işlevsiz rezervasyon paketi yayımlanmaması kararı kaynaklı biçimde kayıtlı.
 
 > **Not:** Görüşmelerde "canlı sayaç" talebi 6'nın altında kalırsa S1'e girilir ama konumlandırma S8 öncesinde yeniden yazılır.
 
