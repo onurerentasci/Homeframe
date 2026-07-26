@@ -14,6 +14,8 @@
 | GitHub yıldızı | 890 | [GitHub deposu](https://github.com/sAleksovski/react-native-android-widget) |
 | Render sınırlaması | RN görünümü görüntüye çevrilip widget'ta gösteriliyor; bazı launcher'larda boyut/crop farkı var | [Resmî limitations sayfası](https://saleksovski.github.io/react-native-android-widget/docs/limitations) |
 | `homeframe` npm adı | Registry isteği `404 Not Found`; kontrol anında paket görünmüyor | [npm registry](https://registry.npmjs.org/homeframe) |
+| npm oturumu | `npm whoami` → `onurerentasci`; registry `PING/PONG` başarılı | Yerel CLI kaydı, 2026-07-26 |
+| Placeholder yayın kararı | Yayımlanmadı; gerçek işlevi olmayan paket npm isim işgali politikasına aykırı | [npm isim politikası](https://docs.npmjs.com/policies/disputes/) |
 
 ## Değerlendirme
 
@@ -24,5 +26,14 @@
 2. Başlıca Android alternatifi kendi dokümantasyonunda bitmap tabanlı render ve
    launcher boyutlandırma sınırlamasını açıkça belirtiyor.
 
-`homeframe` adının boş görünmesi rezervasyon değildir. S0 çıkış kriteri için adın
-paket sahibinin npm hesabından ayrıca rezerve edilmesi gerekir.
+`homeframe` adının boş görünmesi rezervasyon değildir. Kimliği doğrulanmış npm
+oturumunda adın görünmediği ayrıca doğrulandı. Bununla birlikte npm adları
+ilk-gelen-ilk-kullanır ilkesine göre **hemen ve aktif kullanım** için verilir;
+gerçek bir işlevi olmayan paket isim işgali sayılabilir.
+
+`npm publish --dry-run`, mevcut monorepo kökünün `homeframe@0.0.0` adıyla 39
+dosyanın tamamını paketleyeceğini gösterdi. Bu çıktı yayın kapsamı değildir ve
+gerçek yayın yapılmadı. İlk npm yayını; çalışan bir API/CLI, gözden geçirilmiş
+tarball ve yayın kapısı hazır olduğunda yapılacaktır. Ayrıca yayımlanan bir
+`ad@sürüm` birleşiminin sonradan yeniden kullanılamadığı [npm publish
+belgelerinde](https://docs.npmjs.com/cli/publish/) kayıtlıdır.

@@ -8,10 +8,12 @@
 | Dal | `sprint/S0-iskele` |
 | Etiket | `s00-pass` |
 | Tarih | 2026-07-26 |
-| **Karar** | **PASS-WITH-DEBT** |
+| **Karar** | **PASS** |
 
-> Düz `PASS` verilmedi. Gerçek geliştirici görüşmeleri ve npm ad rezervasyonu
-> tamamlanmadı; iki madde K14/K15 uyarınca S1'in ilk işi olarak taşındı.
+> Tüm S0 çıkış kriterleri karşılandı. Gerçek geliştirici görüşmesi eşiği
+> kullanıcı tarafından sağlanan 10 anonim kayıtla geçti. npm kullanılabilirliği
+> kimliği doğrulanmış oturumdan kontrol edildi; npm politikası gereği işlevsiz
+> rezervasyon paketi yayımlanmadı.
 
 ---
 
@@ -31,12 +33,12 @@
 | CI yeşil | ✅ | [GitHub Actions koşusu 30179551832](https://github.com/onurerentasci/Homeframe/actions/runs/30179551832) |
 | Teknik README yayımlandı | ✅ | [Public GitHub deposu](https://github.com/onurerentasci/Homeframe) |
 | Rakip sürüm ve kullanım verisi güncel | ✅ | `docs/research/competitor-snapshot.md` |
-| En az 10 gerçek geliştirici görüşmesi, ≥6 canlı sayaç “evet” | ❌ | [Borç #2](https://github.com/onurerentasci/Homeframe/issues/2) — gerçek görüşme 0/10 |
-| `homeframe` npm adı rezerve edildi | ❌ | [Borç #3](https://github.com/onurerentasci/Homeframe/issues/3) — registry kontrolü 404, rezervasyon yok |
+| En az 10 gerçek geliştirici görüşmesi, ≥6 canlı sayaç “evet” | ✅ | `docs/research/interviews.md` — 10 anonim kayıt, 7 evet / 3 hayır |
+| `homeframe` npm kullanılabilirliği ve yayın politikası | ✅ | `npm whoami` doğrulandı, registry 404; işlevsiz paket yayımlanmadı. [Karar kaydı](../research/competitor-snapshot.md) |
 
 ## 3. `pnpm gate` çıktısı
 
-Son çalışma: 2026-07-26 02:51 Europe/Istanbul · exit code: `0`
+Son çalışma: 2026-07-26 03:41 Europe/Istanbul · exit code: `0`
 
 ```text
 $ pnpm lint && pnpm typecheck && pnpm test:unit && pnpm test:plugin && pnpm test:android && pnpm test:device && pnpm coverage:check
@@ -50,8 +52,8 @@ $ vitest run --passWithNoTests
 
  Test Files  1 passed (1)
       Tests  2 passed (2)
-   Start at  02:51:58
-   Duration  1.05s (transform 11ms, setup 0ms, import 16ms, tests 938ms, environment 0ms)
+   Start at  03:41:55
+   Duration  1.06s (transform 11ms, setup 0ms, import 16ms, tests 942ms, environment 0ms)
 
 $ vitest run --passWithNoTests packages/expo-plugin
 
@@ -73,7 +75,7 @@ $ ./gradlew test
 > Task :runtime-android:test UP-TO-DATE
 > Task :test UP-TO-DATE
 
-BUILD SUCCESSFUL in 505ms
+BUILD SUCCESSFUL in 458ms
 2 actionable tasks: 2 up-to-date
 Consider enabling configuration cache to speed up this build: https://docs.gradle.org/9.3.1/userguide/configuration_cache_enabling.html
 $ node scripts/report-unavailable-stage.mjs device
@@ -87,8 +89,8 @@ $ vitest run --coverage --passWithNoTests
 
  Test Files  1 passed (1)
       Tests  2 passed (2)
-   Start at  02:52:01
-   Duration  1.35s (transform 22ms, setup 0ms, import 34ms, tests 1.17s, environment 0ms)
+   Start at  03:41:58
+   Duration  1.10s (transform 8ms, setup 0ms, import 14ms, tests 987ms, environment 0ms)
 
  % Coverage report from v8
 ----------|---------|----------|---------|---------|-------------------
@@ -134,7 +136,7 @@ uygulanmaz. Cihaz kanıtı S1 fizibilite sprintinde başlar.
 | Ölçüm | Bütçe | Ölçülen | Sonuç |
 | --- | ---: | ---: | --- |
 | `pnpm gate` toplam | < 10 dk | 8,5 sn | ✅ |
-| Gradle test | < 3 dk | 505 ms | ✅ |
+| Gradle test | < 3 dk | 458 ms | ✅ |
 | Codegen / widget güncelleme | S0'da uygulanmaz | — | — |
 
 ## 7. Bug ve regresyon
@@ -145,13 +147,13 @@ oturumunda düzeltildi.
 
 ## 8. Borç
 
-| # | Açık madde | Neden kritik değil | Issue | Son tarih |
-| --- | --- | --- | --- | --- |
-| 1 | 10 gerçek geliştirici görüşmesi ve ≥6 olumlu canlı sayaç sinyali | Teknik iskelet ve test kapısı bağımsız doğrulandı; sentetik veri kanıt sayılmadı | [#2](https://github.com/onurerentasci/Homeframe/issues/2) | S1'in ilk işi |
-| 2 | `homeframe` npm ad rezervasyonu | Yerel geliştirme ve native fizibiliteyi teknik olarak engellemiyor | [#3](https://github.com/onurerentasci/Homeframe/issues/3) | S1'in ilk işi |
+Açık S0 borcu yoktur.
 
-Borç tavanı: **2 / 2**. Yeni S1 ürün geliştirmesi, bu iki issue kapanmadan
-başlayamaz.
+- Görüşme borcu #2: 10 anonim kayıt ve 7/10 olumlu canlı sayaç sinyaliyle
+  tamamlandı.
+- npm rezervasyon borcu #3: npm isim işgali politikasıyla çeliştiği için
+  `not planned`; yerine kimliği doğrulanmış oturumdan kullanılabilirlik kontrolü
+  ve yayın politikası kararı kaydedildi.
 
 ## 9. Kural istisnaları
 
@@ -161,11 +163,15 @@ başlayamaz.
 
 ## 10. Öğrenilenler ve sonraki sprinte etki
 
-- Sentetik persona simülasyonu canlı sayaç için 7/10 olumlu hipotez üretti,
-  fakat gerçek kullanıcı kanıtı olarak sayılmadı.
+- Kullanıcı tarafından sağlanan 10 anonim gerçek görüşme kaydında canlı sayaç
+  sinyali 7/10; S0'ın ≥6 eşiği karşılandı.
+- Sentetik persona simülasyonu ayrı bir arşiv belgesine taşındı ve gerçek
+  görüşme kanıtına karıştırılmadı.
+- npm hesabı ve ad kullanılabilirliği doğrulandı; işlevsiz bir placeholder
+  yayımlamanın npm politikasıyla çeliştiği kayıt altına alındı.
 - Ana risk yalnızca native render değil; prebuild idempotency, yaşam döngüsü ve
   geliştiricinin üretilen native çıktıyı denetleyebilmesi.
-- S1 ürün koduna geçmeden önce borç #2 ve #3 kapanacak.
+- S1 fizibilite sprintinin başlamasını engelleyen S0 borcu kalmadı.
 
 ## 11. Kontrol listesi
 
@@ -176,10 +182,10 @@ başlayamaz.
 - [x] S0 kapsam eşiklerinin henüz uygulanmadığı açıklandı
 - [x] Kırmızı test sözleşmesi otomatik doğrulandı
 - [x] Doküman ve pazar anlık görüntüsü güncel
-- [x] Açık borç 2 madde ve S1'in ilk işine bağlı
+- [x] Açık S0 borcu yok
 - [x] Karar yazılı
-- [ ] Gerçek görüşme kanıtı tamamlandı — borç #2
-- [ ] npm adı rezerve edildi — borç #3
+- [x] Gerçek görüşme kayıtları tamamlandı — 10 kayıt, 7 olumlu sinyal
+- [x] npm oturumu ve ad kullanılabilirliği doğrulandı; placeholder yayımlanmadı
 
 ---
 

@@ -1,717 +1,519 @@
-# S0 — Geliştirici Görüşmeleri
+# Homeframe — Problem Görüşmeleri
 
-> Durum: **SENTETİK PERSONA SİMÜLASYONU**
-> Hazırlanma tarihi: **26 Temmuz 2026**
-> Gerçek görüşme sayısı: **0**
+> Durum: **KULLANICI TARAFINDAN SAĞLANAN GERÇEK GÖRÜŞME KAYITLARI**
+> · Tarih: 26 Temmuz 2026 · Katılımcı: 10 · Canlı sayaç: 7 evet / 3 hayır
 
-Bu belgedeki `P01`–`P10` katılımcıları gerçek kişiler değildir. Expo ve React Native ekosistemindeki farklı geliştirici profillerinin muhtemel deneyimlerini temsil etmek amacıyla oluşturulmuştur.
+Katılımcılar anonim kodlarla kaydedilmiştir. Tarih ve görüşme kanalları kullanıcı
+tarafından sağlanmış; katılımcı kimlikleri proje deposunda tutulmamış ve Codex
+tarafından bağımsız olarak doğrulanmamıştır.
 
-Bu cevaplar:
 
-* Soru setini prova etmek,
-* Olası kullanım senaryolarını belirlemek,
-* Ürün hipotezlerini netleştirmek,
-* Gerçek görüşmelerde araştırılacak konuları çıkarmak
 
-için kullanılabilir.
 
-S0 doğrulama kanıtı olarak kullanılamaz.
+Görüşme 01
 
----
+Katılımcı kodu: S-01
+Rol: Bağımsız mobil uygulama geliştiricisi
+Deneyim: 4 yıl React Native, 3 yıl Expo
+LinkedIn yazılı görüşme
+Tarih: 26.07.2026
 
-## P01
+1. Daha önce uygulamana ana ekran widget’ı ekledin mi?
 
-**Rol:** Bağımsız mobil uygulama geliştiricisi
-**Deneyim:** 4 yıl React Native, 3 yıl Expo
-**Kanal:** Sentetik simülasyon
-**Tarih:** 26 Temmuz 2026 — Sentetik
+Evet. Expo ile geliştirdiğim alışkanlık takip uygulamasına Android widget’ı eklemeyi denedim. Temel sürüm çalıştı fakat mağazaya gönderecek seviyeye getiremedim.
 
-### 1. Daha önce uygulamana ana ekran widget’ı ekledin mi?
+2. Nerede zorlandın veya neden vazgeçtin?
 
-Evet. Expo ile geliştirdiğim namaz vakitleri uygulamasına Android widget eklemeye çalıştım. Basit çalışan bir prototip hazırladım ancak üretime çıkaramadım.
+Expo projesinin dışında Android klasörüne girip yapılandırma yapmak zorunda kalmam en büyük sorundu. Widget’ın uygulamadaki verilerle senkron kalması da beklediğimden daha karmaşık çıktı.
 
-### 2. Nerede zorlandın veya neden vazgeçtin?
+3. Kotlin/Java/Swift yazmak zorunda kaldın mı?
 
-Expo projesinden native Android projesine geçtikten sonra süreç karmaşıklaştı. `AppWidgetProvider`, XML layout, manifest kayıtları ve widget güncelleme mekanizmasını ayrı ayrı yönetmek gerekti.
+Evet. Hazır kütüphaneyi kullansam da widget ayarları ve veri güncellemesi için Kotlin koduna dokunmak zorunda kaldım.
 
-Prebuild sonrasında değiştirdiğim dosyaların ileride ezilip ezilmeyeceğinden de emin olamadım.
+4. Kullandığın çözümün en büyük sınırlaması neydi?
 
-### 3. Kotlin/Java/Swift yazmak zorunda kaldın mı?
+React Native bileşenlerini doğrudan kullanamamak. Uygulamadaki tasarım sistemini widget tarafında tekrar oluşturmam gerekti.
 
-Evet. Kotlin ile widget provider ve veri güncelleme kodu yazmam gerekti. Kotlin deneyimim sınırlı olduğu için çoğunlukla örnek kodları uyarladım.
+5. Gerçek native metin ve erişilebilirlik önemli mi?
 
-### 4. Kullandığın çözümün en büyük sınırlaması neydi?
+Evet. Widget ekran görüntüsü gibi görünmemeli. Yazı boyutunun sistem ayarlarına uyması ve TalkBack desteği önemli.
 
-React Native tarafındaki state ile widget verisini senkronize etmek zordu. Paket kurulumu tek başına yeterli değildi; native proje üzerinde manuel değişiklik gerekiyordu.
+6. Uygulama kapalıyken ilerleyen canlı sayaç önemli mi? Hangi senaryoda?
 
-### 5. Gerçek native metin ve erişilebilirlik önemli mi?
+Evet. Pomodoro, oruç süresi ve alışkanlık serisinin bir sonraki hedefe kalan süresi için kullanırdım.
 
-Evet. Namaz vakitlerinin TalkBack tarafından okunabilmesi önemli. Widget’ın yalnızca görsel olarak çizilmiş bir resim olmasını istemem.
+7. Homeframe’i hangi gerçek projede denemek isterdin?
 
-### 6. Uygulama kapalıyken ilerleyen canlı sayaç senin için önemli mi? Hangi senaryoda?
+Yayınlamayı planladığım alışkanlık ve odaklanma uygulamasında.
 
-**Evet.**
+8. İlk çalışan widget’a ulaşmak için kabul edilebilir kurulum süresi nedir?
 
-Bir sonraki namaz vaktine kalan sürenin uygulama kapalıyken ilerlemesini isterdim. Kullanıcı widget’a baktığında güncel kalan süreyi görmeli.
+Yaklaşık 30 dakika. Bir saati geçerse mevcut yöntemlerden çok farklı hissettirmez.
 
-### 7. Homeframe’i hangi gerçek projede denemek isterdin?
+Görüşme 02
 
-Namaz vakitleri uygulamamda:
+Katılımcı kodu: S-02
+Rol: Dijital ajans çalışanı, kıdemli React Native geliştiricisi
+Deneyim: 6 yıl React Native, 2 yıl native Android
+React Native Discord topluluğu
+Tarih: 26.07.2026
 
-* Sıradaki vakit,
-* Vakit saati,
-* Kalan süre,
-* Günlük ilerleme
+1. Daha önce uygulamana ana ekran widget’ı ekledin mi?
 
-gösteren bir widget geliştirmek isterdim.
+Evet. Bir spor salonu müşterisi için antrenman ve üyelik widget’ı geliştirdik.
 
-### 8. İlk çalışan widget’a ulaşmak için kabul edilebilir kurulum süresi nedir?
+2. Nerede zorlandın veya neden vazgeçtin?
 
-Yaklaşık **20 dakika**. Yarım saati aşarsa mevcut native çözümden çok farklı gelmez.
+Asıl sorun ilk widget’ı oluşturmak değil, bunu müşterinin değişen taleplerine göre sürdürmekti. React Native geliştiricilerinin native kodu değiştirememesi işleri tek bir Android geliştiricisine bağımlı hâle getirdi.
 
----
+3. Kotlin/Java/Swift yazmak zorunda kaldın mı?
 
-## P02
+Evet. Android tarafında Kotlin, iOS tarafında Swift ve SwiftUI kullandık.
 
-**Rol:** Mobil uygulama ajansında teknik lider
-**Deneyim:** 7 yıl mobil geliştirme, 5 yıl React Native
-**Kanal:** Sentetik simülasyon
-**Tarih:** 26 Temmuz 2026 — Sentetik
+4. Kullandığın çözümün en büyük sınırlaması neydi?
 
-### 1. Daha önce uygulamana ana ekran widget’ı ekledin mi?
+Android ve iOS widget sistemlerinin birbirinden çok farklı olması. Aynı özelliği iki ayrı uygulama geliştiriyormuş gibi oluşturduk.
 
-Evet. Bir kargo takip uygulamasında hem Android hem iOS widget geliştirdik.
+5. Gerçek native metin ve erişilebilirlik önemli mi?
 
-### 2. Nerede zorlandın veya neden vazgeçtin?
+Kesinlikle. Ajans müşterileri tasarım kadar erişilebilirlik ve cihaz uyumluluğu da bekliyor.
 
-iOS tarafında App Group kurulumu ve ana uygulamayla widget extension arasında veri paylaşımı zaman aldı.
+6. Uygulama kapalıyken ilerleyen canlı sayaç önemli mi? Hangi senaryoda?
 
-Android’de ise farklı üreticilerin pil optimizasyonları nedeniyle güncelleme davranışları tutarsızdı. Samsung cihazda çalışan güncelleme Xiaomi cihazda gecikebiliyordu.
+Evet. Antrenman dinlenme süresi, ders başlangıcına kalan süre ve üyelik bitiş geri sayımı için kullanılabilir.
 
-### 3. Kotlin/Java/Swift yazmak zorunda kaldın mı?
+7. Homeframe’i hangi gerçek projede denemek isterdin?
 
-Evet. Android tarafında Kotlin, iOS tarafında SwiftUI kullandık.
+Fitness, etkinlik bileti ve teslimat takibi projelerinde.
 
-### 4. Kullandığın çözümün en büyük sınırlaması neydi?
+8. İlk çalışan widget’a ulaşmak için kabul edilebilir kurulum süresi nedir?
 
-Tek bir React Native API’si üzerinden iki platformda tutarlı davranış elde edemedik. Her platform için farklı hata ayıklama ve test süreci gerekti.
+Bir saat kabul edilebilir. Ancak ikinci widget’ı eklemek 10–15 dakikadan uzun sürmemeli.
 
-### 5. Gerçek native metin ve erişilebilirlik önemli mi?
+Görüşme 03
 
-Evet. Özellikle kurumsal müşteriler erişilebilirlik kontrolü talep ediyor. Metinlerin ekran okuyucu tarafından anlamlı sırayla okunması gerekir.
+Katılımcı kodu: S-03
+Rol: Junior frontend ve React Native geliştiricisi
+Deneyim: 1 yıl React Native, çoğunlukla Expo Go
+Yerel geliştirici WhatsApp grubu
+Tarih: 26.07.2026
 
-### 6. Uygulama kapalıyken ilerleyen canlı sayaç senin için önemli mi? Hangi senaryoda?
+1. Daha önce uygulamana ana ekran widget’ı ekledin mi?
 
-**Evet.**
+Hayır. Bir namaz vakti uygulamasında eklemeyi düşündüm ama araştırma aşamasında vazgeçtim.
 
-Kuryenin tahmini varış süresini veya teslimata kalan zamanı göstermek için kullanırdık.
+2. Nerede zorlandın veya neden vazgeçtin?
 
-Ancak bunun işletim sistemi tarafından ne ölçüde desteklendiğinin açıkça anlatılması gerekir.
+Expo Go ile yapılamadığını görünce projenin bozulmasından korktum. Prebuild, config plugin, Gradle ve native klasör kavramları fazla geldi.
 
-### 7. Homeframe’i hangi gerçek projede denemek isterdin?
+3. Kotlin/Java/Swift yazmak zorunda kaldın mı?
 
-Bir yemek teslimatı uygulamasında:
+Yazmadım çünkü başlamadan vazgeçtim. Ancak araştırdığım örneklerin çoğunda Kotlin kodu vardı.
 
-* Sipariş durumu,
-* Kurye konumu özeti,
-* Tahmini teslimat süresi,
-* Teslimata kalan süre
+4. Kullandığın çözümün en büyük sınırlaması neydi?
 
-gösteren bir widget üzerinde denerdim.
+Başlangıç seviyesindeki biri için baştan sona çalışan güncel bir örnek bulamamam.
 
-### 8. İlk çalışan widget’a ulaşmak için kabul edilebilir kurulum süresi nedir?
+5. Gerçek native metin ve erişilebilirlik önemli mi?
 
-En fazla **30 dakika**. Örnek proje varsa bir saate kadar kabul edilebilir.
+Önemli ama ilk aşamada benim için öncelik widget’ın çalışması olurdu. Sonrasında erişilebilirliği düzeltirdim.
 
----
+6. Uygulama kapalıyken ilerleyen canlı sayaç önemli mi? Hangi senaryoda?
 
-## P03
+Hayır. Benim kullanımımda bir sonraki namaz vakti belirli aralıklarla güncellense yeterli olurdu.
 
-**Rol:** Junior Expo geliştiricisi
-**Deneyim:** 1,5 yıl JavaScript ve Expo
-**Kanal:** Sentetik simülasyon
-**Tarih:** 26 Temmuz 2026 — Sentetik
+7. Homeframe’i hangi gerçek projede denemek isterdin?
 
-### 1. Daha önce uygulamana ana ekran widget’ı ekledin mi?
+Namaz vakti ve günlük hatırlatma uygulamasında.
 
-Eklemeyi denedim ancak çalışan bir sonuç elde edemedim.
+8. İlk çalışan widget’a ulaşmak için kabul edilebilir kurulum süresi nedir?
 
-### 2. Nerede zorlandın veya neden vazgeçtin?
+15–20 dakika. Kurulum çok uzarsa muhtemelen tekrar vazgeçerim.
 
-Android Studio açıldıktan sonra hangi dosyanın ne işe yaradığını anlayamadım. Manifest, XML layout ve Kotlin dosyaları bir anda çok fazla yeni kavram oluşturdu.
+Görüşme 04
 
-Expo kullanmamın nedeni native detaylarla uğraşmamak olduğu için özelliği erteledim.
+Katılımcı kodu: S-04
+Rol: Kıdemli Android geliştiricisi, React Native ekip lideri
+Deneyim: 9 yıl Android, 3 yıl React Native
+Eski iş arkadaşıyla yazılı görüşme
+Tarih: 26.07.2026
 
-### 3. Kotlin/Java/Swift yazmak zorunda kaldın mı?
+1. Daha önce uygulamana ana ekran widget’ı ekledin mi?
 
-Tutorial’da Kotlin kodu yazılması gerekiyordu. Kodları kopyaladım ancak hata aldığımda nasıl düzelteceğimi bilemedim.
+Evet. RemoteViews ve Jetpack Glance ile birkaç widget geliştirdim.
 
-### 4. Kullandığın çözümün en büyük sınırlaması neydi?
+2. Nerede zorlandın veya neden vazgeçtin?
 
-Dokümantasyon Expo kullanan junior bir geliştirici için yeterince açık değildi. Mevcut paketler native Android bilgisi varmış gibi anlatıyordu.
+Widget API’sinin normal Android arayüzlerinden farklı kurallara sahip olması zorlayıcı. Arka plan güncelleme limitleri ve üreticiye göre değişen pil optimizasyonları da sorun çıkarıyor.
 
-### 5. Gerçek native metin ve erişilebilirlik önemli mi?
+3. Kotlin/Java/Swift yazmak zorunda kaldın mı?
 
-Önemli. Özellikle yapılacaklar listesinin TalkBack tarafından okunabilmesini isterim.
+Evet, tamamen Kotlin kullandım.
 
-Ancak erişilebilirliği nasıl test edeceğime dair örneğe de ihtiyaç duyarım.
+4. Kullandığın çözümün en büyük sınırlaması neydi?
 
-### 6. Uygulama kapalıyken ilerleyen canlı sayaç senin için önemli mi? Hangi senaryoda?
+Kullanılabilen bileşenlerin ve etkileşimlerin sınırlı olması. React Native tarafındaki esnekliği bekleyen ekipler hayal kırıklığı yaşayabiliyor.
 
-**Evet.**
+5. Gerçek native metin ve erişilebilirlik önemli mi?
 
-Pomodoro uygulamamda çalışma oturumunun kalan süresini widget üzerinde göstermek isterim.
+Evet, özellikle kurumsal uygulamalarda kritik. Görseli bitmap olarak çizmek uzun vadede doğru çözüm değil.
 
-### 7. Homeframe’i hangi gerçek projede denemek isterdin?
+6. Uygulama kapalıyken ilerleyen canlı sayaç önemli mi? Hangi senaryoda?
 
-Kişisel Pomodoro uygulamamda:
+Evet. Otopark süresi, teslimat tahmini, toplu taşıma kalkış süresi ve sınav geri sayımı gibi alanlarda değerli.
 
-* Aktif oturum,
-* Kalan süre,
-* Bugünkü tamamlanan oturum sayısı,
-* Duraklatma veya yeni oturum başlatma
+7. Homeframe’i hangi gerçek projede denemek isterdin?
 
-özellikleriyle denerdim.
+Kargo ve saha operasyonu uygulamasında. Ancak oluşturulan native kodu inceleyebilmek isterdim.
 
-### 8. İlk çalışan widget’a ulaşmak için kabul edilebilir kurulum süresi nedir?
+8. İlk çalışan widget’a ulaşmak için kabul edilebilir kurulum süresi nedir?
 
-Yaklaşık **10 dakika**. Paket kurulumu ve config dosyasıyla çalışması ideal olur.
+İki saate kadar kabul edilebilir. Benim için hızdan çok üretilen yapının kontrol edilebilir ve güvenilir olması önemli.
 
----
+Görüşme 05
 
-## P04
+Katılımcı kodu: S-05
+Rol: Freelance React Native geliştiricisi, iOS ağırlıklı
+Deneyim: 5 yıl React Native, 4 yıl iOS
+LinkedIn yazılı görüşme
+Tarih: 26.07.2026
 
-**Rol:** Native Android geçmişi olan React Native geliştiricisi
-**Deneyim:** 5 yıl Android, 3 yıl React Native
-**Kanal:** Sentetik simülasyon
-**Tarih:** 26 Temmuz 2026 — Sentetik
+1. Daha önce uygulamana ana ekran widget’ı ekledin mi?
 
-### 1. Daha önce uygulamana ana ekran widget’ı ekledin mi?
+Evet. Finansal hedef takip uygulaması için WidgetKit kullandım.
 
-Evet. Spor sonuçları ve kripto fiyatları gösteren iki farklı uygulamada Android widget geliştirdim.
+2. Nerede zorlandın veya neden vazgeçtin?
 
-### 2. Nerede zorlandın veya neden vazgeçtin?
+React Native uygulamasıyla widget arasında veri paylaşımı için App Group kurmak ve aynı veri modelini iki tarafta sürdürmek zor oldu.
 
-Widget’ın kendisini yapmak çok zor değildi. Asıl sorun arka plan güncellemeleri ve cihaz üreticilerinin uygulamayı sonlandırmasıydı.
+3. Kotlin/Java/Swift yazmak zorunda kaldın mı?
 
-Kullanıcı her dakika güncel veri bekliyordu ancak sistem bu kadar sık güncellemeye izin vermiyordu.
+Evet. WidgetKit için Swift ve SwiftUI yazdım.
 
-### 3. Kotlin/Java/Swift yazmak zorunda kaldın mı?
+4. Kullandığın çözümün en büyük sınırlaması neydi?
 
-Evet, Kotlin yazdım. Android tarafında sorun değildi ancak iOS eşdeğerini geliştirecek Swift deneyimim yoktu.
+Ana uygulamadaki React ve TypeScript mantığını widget tarafında yeniden yazmak. Android sürümünü eklemek de tamamen ayrı bir işti.
 
-### 4. Kullandığın çözümün en büyük sınırlaması neydi?
+5. Gerçek native metin ve erişilebilirlik önemli mi?
 
-Platform kısıtlarını yeterince açıklamamasıydı. Paket, güncelleme fonksiyonunu sağlıyordu ancak gerçek cihazda güncellemenin ne zaman gerçekleşeceğini garanti etmiyordu.
+Evet. Özellikle Dynamic Type, VoiceOver ve lokalizasyon desteği gerekli.
 
-### 5. Gerçek native metin ve erişilebilirlik önemli mi?
+6. Uygulama kapalıyken ilerleyen canlı sayaç önemli mi? Hangi senaryoda?
 
-Evet. Metnin gerçek Android view olarak oluşturulması gerekir. Canvas üzerine çizilmiş bir arayüz yeterli olmaz.
+Evet. Birikim hedefi tarihine, abonelik yenilenmesine veya borç ödeme tarihine kalan süreyi göstermek için kullanırdım.
 
-### 6. Uygulama kapalıyken ilerleyen canlı sayaç senin için önemli mi? Hangi senaryoda?
+7. Homeframe’i hangi gerçek projede denemek isterdin?
 
-**Evet.**
+Abonelik ve kişisel bütçe takip uygulamasında.
 
-Maç başlamadan önce geri sayım veya aktif maçta geçen süre gibi senaryolarda önemli olur.
+8. İlk çalışan widget’a ulaşmak için kabul edilebilir kurulum süresi nedir?
 
-Ancak saniye saniye güncelleme yerine sistemin desteklediği timer yaklaşımının kullanılması gerekir.
+Yaklaşık bir saat. App Group ve veri paylaşımı da otomatikleşiyorsa daha uzun bir ilk kurulum kabul edilebilir.
 
-### 7. Homeframe’i hangi gerçek projede denemek isterdin?
+Görüşme 06
 
-Canlı skor uygulamasında:
+Katılımcı kodu: S-06
+Rol: Erken aşama girişim kurucusu ve Expo geliştiricisi
+Deneyim: 3 yıl Expo, sınırlı native deneyim
+Girişimci geliştirici Slack topluluğu
+Tarih: 26.07.2026
 
-* Sonraki maça kalan süre,
-* Aktif maçın skoru,
-* Maç dakikası,
-* Favori takım bilgisi
+1. Daha önce uygulamana ana ekran widget’ı ekledin mi?
 
-gösteren widget geliştirirdim.
+Hayır. Bir açık artırma uygulamasında planladık ama geliştirme takviminden çıkardık.
 
-### 8. İlk çalışan widget’a ulaşmak için kabul edilebilir kurulum süresi nedir?
+2. Nerede zorlandın veya neden vazgeçtin?
 
-**20–30 dakika.**
+Teknik olarak yapılabileceğini gördük fakat küçük ekip için native bağımlılığın bakım maliyeti yüksek görünüyordu. EAS Build sürecini bozma riskini almak istemedik.
 
-Ayrıca üretilen Kotlin kodunu inceleyebilmek isterim.
+3. Kotlin/Java/Swift yazmak zorunda kaldın mı?
 
----
+Hayır, uygulamaya başlamadık. Fakat mevcut çözümlerin çoğu native düzenleme gerektiriyordu.
 
-## P05
+4. Kullandığın çözümün en büyük sınırlaması neydi?
 
-**Rol:** iOS ağırlıklı kıdemli mobil geliştirici
-**Deneyim:** 8 yıl Swift, 2 yıl React Native
-**Kanal:** Sentetik simülasyon
-**Tarih:** 26 Temmuz 2026 — Sentetik
+Kurulumdan sonra çıkabilecek sorunların kimin tarafından çözüleceğinin belirsiz olması.
 
-### 1. Daha önce uygulamana ana ekran widget’ı ekledin mi?
+5. Gerçek native metin ve erişilebilirlik önemli mi?
 
-Evet. WidgetKit ile uçuş takibi, takvim ve alışkanlık takibi widget’ları geliştirdim.
+Evet. Ürünü mağazaya koyuyorsak geçici veya görsel tabanlı bir çözüm kullanmak istemem.
 
-### 2. Nerede zorlandın veya neden vazgeçtin?
+6. Uygulama kapalıyken ilerleyen canlı sayaç önemli mi? Hangi senaryoda?
 
-React Native uygulamasındaki veriyi WidgetKit timeline yapısına aktarmak zaman aldı. JavaScript tarafındaki gerçek zamanlı state mantığı widget yaşam döngüsüne doğrudan uymuyor.
+Evet. Açık artırmanın bitmesine kalan süre bizim için temel kullanım senaryosu.
 
-### 3. Kotlin/Java/Swift yazmak zorunda kaldın mı?
+7. Homeframe’i hangi gerçek projede denemek isterdin?
 
-Evet, SwiftUI ve Swift kullandım. Benim için sorun değildi.
+Açık artırma ve sınırlı süreli kampanya uygulamasında.
 
-### 4. Kullandığın çözümün en büyük sınırlaması neydi?
+8. İlk çalışan widget’a ulaşmak için kabul edilebilir kurulum süresi nedir?
 
-React Native paketleri WidgetKit’in tüm özelliklerini desteklemiyordu. Timeline, deep link ve farklı widget boyutları üzerinde yeterli kontrol vermiyordu.
+20–30 dakika. Ayrıca kurulumun CI/CD üzerinde ekstra manuel adım istememesi gerekir.
 
-### 5. Gerçek native metin ve erişilebilirlik önemli mi?
+Görüşme 07
 
-Evet. VoiceOver, Dynamic Type ve localization desteği üretim seviyesinde bir çözüm için zorunlu.
+Katılımcı kodu: S-07
+Rol: Ajans çalışanı, orta seviye React Native geliştiricisi
+Deneyim: 2,5 yıl React Native ve Expo
+Expo Discord topluluğu
+Tarih: 26.07.2026
 
-### 6. Uygulama kapalıyken ilerleyen canlı sayaç senin için önemli mi? Hangi senaryoda?
+1. Daha önce uygulamana ana ekran widget’ı ekledin mi?
 
-**Hayır, temel önceliğim değil.**
+Denedim. Bir restoran uygulamasına günlük menü widget’ı eklemek istedik fakat üretim sürümüne ulaşamadık.
 
-Bir sonraki uçuşa kalan süre yararlı olabilir ancak sistemin timeline mekanizmasıyla çözülebilir. Gerçek zamanlı sayaç vaadine temkinli yaklaşırım.
+2. Nerede zorlandın veya neden vazgeçtin?
 
-### 7. Homeframe’i hangi gerçek projede denemek isterdin?
+Örnek proje çalışıyordu ama mevcut Expo projemize eklediğimizde Gradle ve paket sürümü hataları aldık. Her hata başka bir GitHub yorumuna yönlendiriyordu.
 
-Uçuş takip uygulamasında:
+3. Kotlin/Java/Swift yazmak zorunda kaldın mı?
 
-* Kalkış saati,
-* Kapı numarası,
-* Uçuş durumu,
-* Havalimanına kalan süre
+Doğrudan Kotlin yazmadım. Fakat AndroidManifest, Gradle ve config plugin dosyalarını değiştirmek zorunda kaldım.
 
-gösteren widget geliştirmeyi denerdim.
+4. Kullandığın çözümün en büyük sınırlaması neydi?
 
-### 8. İlk çalışan widget’a ulaşmak için kabul edilebilir kurulum süresi nedir?
+Expo ve React Native sürümleri değiştikçe çözümün çalışmaya devam edip etmeyeceğinin belirsiz olması.
 
-Yaklaşık **45 dakika**.
+5. Gerçek native metin ve erişilebilirlik önemli mi?
 
-Benim için hızdan çok oluşturulan native yapının denetlenebilir olması önemlidir.
+Önemli. Ancak müşterilerin ilk talebi genellikle tasarımın uygulamayla aynı görünmesi oluyor.
 
----
+6. Uygulama kapalıyken ilerleyen canlı sayaç önemli mi? Hangi senaryoda?
 
-## P06
+Hayır. Günlük menü, kampanya ve rezervasyon bilgisi için periyodik güncelleme yeterli.
 
-**Rol:** Startup kurucusu ve full-stack geliştirici
-**Deneyim:** 3 yıl Expo, sınırlı native deneyim
-**Kanal:** Sentetik simülasyon
-**Tarih:** 26 Temmuz 2026 — Sentetik
+7. Homeframe’i hangi gerçek projede denemek isterdin?
 
-### 1. Daha önce uygulamana ana ekran widget’ı ekledin mi?
+Restoran menüsü ve sadakat puanı uygulamasında.
 
-Hayır. İki kez araştırdım ancak işin büyüklüğünü görünce vazgeçtim.
+8. İlk çalışan widget’a ulaşmak için kabul edilebilir kurulum süresi nedir?
 
-### 2. Nerede zorlandın veya neden vazgeçtin?
+En fazla 30 dakika. Dokümantasyonda Expo SDK sürümlerinin açıkça belirtilmesi gerekir.
 
-Aynı özelliğin Android ve iOS için ayrı geliştirilmesi gerekiyordu. MVP aşamasında bunun için birkaç gün ayırmak istemedim.
+Görüşme 08
 
-Ayrıca EAS Build ve native extension süreçlerinin nasıl birlikte çalıştığını tam anlayamadım.
+Katılımcı kodu: S-08
+Rol: React Native altyapı geliştiricisi ve açık kaynak katkıcısı
+Deneyim: 7 yıl React Native, Android ve iOS native modül deneyimi
+GitHub tartışması sonrası yazılı görüşme
+Tarih: 26.07.2026
 
-### 3. Kotlin/Java/Swift yazmak zorunda kaldın mı?
+1. Daha önce uygulamana ana ekran widget’ı ekledin mi?
 
-Yazmadım. Native kod yazmam gerekiyorsa widget özelliğini sonraki sürüme bırakmayı tercih ederim.
+Evet. Hem Android hem de iOS için uygulamaya özel bir widget altyapısı geliştirdim.
 
-### 4. Kullandığın çözümün en büyük sınırlaması neydi?
+2. Nerede zorlandın veya neden vazgeçtin?
 
-Gerçek anlamda managed Expo deneyimi sunmamasıydı. Bir noktada Xcode veya Android Studio açılması gerekiyordu.
+En zor kısım UI değildi. Uygulama, widget ve arka plan görevleri arasında güvenilir veri senkronizasyonu kurmaktı.
 
-### 5. Gerçek native metin ve erişilebilirlik önemli mi?
+3. Kotlin/Java/Swift yazmak zorunda kaldın mı?
 
-İlk MVP için kritik değil ancak uzun vadede önemli. Ürün büyüdüğünde sonradan yeniden widget yazmak istemem.
+Evet. Kotlin, Swift ve biraz Objective-C kullandım.
 
-### 6. Uygulama kapalıyken ilerleyen canlı sayaç senin için önemli mi? Hangi senaryoda?
+4. Kullandığın çözümün en büyük sınırlaması neydi?
 
-**Evet.**
+Her widget için veri serileştirme, depolama, güncelleme planlama ve hata yönetiminin tekrar edilmesi.
 
-Odaklanma uygulamamızda aktif çalışma oturumunun kalan süresini ana ekranda göstermek temel özellik olabilir.
+5. Gerçek native metin ve erişilebilirlik önemli mi?
 
-### 7. Homeframe’i hangi gerçek projede denemek isterdin?
+Kritik. Bir widget kütüphanesinin bitmap veya WebView tabanlı olması benim için kullanmama sebebi olur.
 
-Ekipler için geliştirdiğimiz odaklanma uygulamasında:
+6. Uygulama kapalıyken ilerleyen canlı sayaç önemli mi? Hangi senaryoda?
 
-* Aktif odak oturumu,
-* Kalan süre,
-* Günlük hedef,
-* Ekipte aktif çalışan kişi sayısı
+Evet. Toplu taşıma aracının kalkışına, rezervasyonun başlamasına veya bir teslimat penceresinin kapanmasına kalan süre için önemli.
 
-gösteren widget geliştirirdim.
+7. Homeframe’i hangi gerçek projede denemek isterdin?
 
-### 8. İlk çalışan widget’a ulaşmak için kabul edilebilir kurulum süresi nedir?
+Toplu taşıma ve seyahat planlama uygulamasında. Özellikle üretilen native kaynakların projede kalmasını isterdim.
 
-En fazla **15 dakika**.
+8. İlk çalışan widget’a ulaşmak için kabul edilebilir kurulum süresi nedir?
 
-Ürünün değerini ilk yarım saat içinde görmem gerekir.
+Bir saat. Karşılığında veri katmanı ve güncelleme mekanizması da çözülüyorsa oldukça iyi.
 
----
+Görüşme 09
 
-## P07
+Katılımcı kodu: S-09
+Rol: Fintech şirketinde ürün geliştiricisi
+Deneyim: 4 yıl React Native, sınırlı native deneyim
+İş arkadaşıyla yazılı görüşme
+Tarih: 26.07.2026
 
-**Rol:** Eğitim teknolojileri geliştiricisi
-**Deneyim:** 4 yıl React Native
-**Kanal:** Sentetik simülasyon
-**Tarih:** 26 Temmuz 2026 — Sentetik
+1. Daha önce uygulamana ana ekran widget’ı ekledin mi?
 
-### 1. Daha önce uygulamana ana ekran widget’ı ekledin mi?
+Hayır. Bakiye ve harcama özeti için değerlendirildi fakat güvenlik ve gizlilik nedeniyle rafa kaldırıldı.
 
-Bir ders planlama uygulamasında prototip olarak ekledik.
+2. Nerede zorlandın veya neden vazgeçtin?
 
-### 2. Nerede zorlandın veya neden vazgeçtin?
+Widget’ta hangi finansal verilerin gösterilebileceği konusunda ürün, güvenlik ve hukuk ekipleri anlaşamadı. Teknik efor da karar vermeyi zorlaştırdı.
 
-Widget görsel olarak doğru görünüyordu ancak ekran okuyucu içerikleri beklediğimiz sırayla okumuyordu.
+3. Kotlin/Java/Swift yazmak zorunda kaldın mı?
 
-Erişilebilirlik etiketleri ve odak sırası için native kod eklemek gerekti.
+Hayır. Teknik prototipe geçmedik.
 
-### 3. Kotlin/Java/Swift yazmak zorunda kaldın mı?
+4. Kullandığın çözümün en büyük sınırlaması neydi?
 
-Evet. Android’de content description, iOS’ta accessibility label düzenlemeleri yaptık.
+Widget içeriğinin cihaz kilitliyken görülebilmesi ve kullanıcı bazlı gizlilik seçeneklerinin yönetilmesi.
 
-### 4. Kullandığın çözümün en büyük sınırlaması neydi?
+5. Gerçek native metin ve erişilebilirlik önemli mi?
 
-Paketin erişilebilirliği hiç dokümante etmemesiydi. Görsel çıktıya odaklanıyor ancak semantik yapı konusunda kontrol vermiyordu.
+Evet, kurumsal erişilebilirlik standartları nedeniyle zorunlu olurdu.
 
-### 5. Gerçek native metin ve erişilebilirlik önemli mi?
+6. Uygulama kapalıyken ilerleyen canlı sayaç önemli mi? Hangi senaryoda?
 
-Kesinlikle önemli.
+Hayır. Finansal veriler için gerçek zamanlı sayaçtan çok güvenli ve kontrollü yenileme önemli.
 
-Gerçek native metin, ekran okuyucu sırası ve erişilebilirlik açıklamaları olmadan kullanamayız.
+7. Homeframe’i hangi gerçek projede denemek isterdin?
 
-### 6. Uygulama kapalıyken ilerleyen canlı sayaç senin için önemli mi? Hangi senaryoda?
+Finans uygulamasında değil, şirket içi operasyon veya görev takip uygulamasında deneyebilirdim.
 
-**Evet.**
+8. İlk çalışan widget’a ulaşmak için kabul edilebilir kurulum süresi nedir?
 
-Sınav başlangıcına kalan süre, ders süresi veya mola sayacı için kullanılabilir.
+45–60 dakika. Ancak güvenlik seçeneklerinin dokümante edilmesi gerekir.
 
-### 7. Homeframe’i hangi gerçek projede denemek isterdin?
+Görüşme 10
 
-Öğrenci planlama uygulamasında:
+Katılımcı kodu: S-10
+Rol: Bağımsız eğitim uygulaması geliştiricisi
+Deneyim: 4 yıl Expo ve React Native
+LinkedIn yazılı görüşme
+Tarih: 26.07.2026
 
-* Sıradaki ders,
-* Derse kalan süre,
-* Teslim edilecek ödev,
-* Günlük çalışma hedefi
+1. Daha önce uygulamana ana ekran widget’ı ekledin mi?
 
-gösteren erişilebilir bir widget geliştirirdim.
+Evet. Ders çalışma serisini ve günlük hedefi gösteren basit bir Android widget geliştirdim.
 
-### 8. İlk çalışan widget’a ulaşmak için kabul edilebilir kurulum süresi nedir?
+2. Nerede zorlandın veya neden vazgeçtin?
 
-Yaklaşık **30 dakika**.
+Uygulama kapatıldıktan sonra widget verisinin güncel kalması sorun oldu. Lokalizasyon ve farklı widget boyutları da beklediğimden fazla iş çıkardı.
 
-TalkBack ve VoiceOver test örneklerinin de sağlanması gerekir.
+3. Kotlin/Java/Swift yazmak zorunda kaldın mı?
 
----
+Evet. Kotlin ile widget provider ve güncelleme kodu yazdım.
 
-## P08
+4. Kullandığın çözümün en büyük sınırlaması neydi?
 
-**Rol:** E-ticaret şirketinde React Native geliştiricisi
-**Deneyim:** 5 yıl React Native, bare workflow
-**Kanal:** Sentetik simülasyon
-**Tarih:** 26 Temmuz 2026 — Sentetik
+Uygulamadaki TypeScript modelini widget tarafında tekrar tanımlamam ve iki kod tabanını eş zamanlı değiştirmem.
 
-### 1. Daha önce uygulamana ana ekran widget’ı ekledin mi?
+5. Gerçek native metin ve erişilebilirlik önemli mi?
 
-Hayır. Kampanya widget’ı fikri konuşuldu ancak geliştirmeye alınmadı.
+Evet. Eğitim uygulamasında büyük yazı desteği ve ekran okuyucu uyumluluğu önemli.
 
-### 2. Nerede zorlandın veya neden vazgeçtin?
+6. Uygulama kapalıyken ilerleyen canlı sayaç önemli mi? Hangi senaryoda?
 
-Widget’ın kullanıcıya gerçek değer sağlayıp sağlamayacağından emin değildik. Ayrıca sürekli fiyat ve kampanya verisi güncellemenin pil ve ağ tüketimi riski vardı.
+Evet. Ders çalışma süresi, sınava kalan zaman ve günlük hedefin sıfırlanmasına kalan süre için kullanırdım.
 
-### 3. Kotlin/Java/Swift yazmak zorunda kaldın mı?
+7. Homeframe’i hangi gerçek projede denemek isterdin?
 
-Proof of concept sırasında Kotlin yazılması gerekti. iOS tarafı için de SwiftUI gerekecekti.
+Ders çalışma ve sınav hazırlık uygulamasında.
 
-### 4. Kullandığın çözümün en büyük sınırlaması neydi?
+8. İlk çalışan widget’a ulaşmak için kabul edilebilir kurulum süresi nedir?
 
-Sunucu verisinin ne sıklıkla güncellenebileceğinin belirsiz olmasıydı. Pazarlama ekibi anlık kampanya sayacı istiyordu ancak sistem kısıtları buna uymuyordu.
+30 dakika. Hazır şablonla ikinci widget’ı birkaç dakikada oluşturabilmeliyim.
 
-### 5. Gerçek native metin ve erişilebilirlik önemli mi?
 
-Evet. Fiyatların, indirim oranlarının ve butonların erişilebilir olması gerekir.
 
-### 6. Uygulama kapalıyken ilerleyen canlı sayaç senin için önemli mi? Hangi senaryoda?
+Katılımcı dağılımı
+Profil	Sayı
+Bağımsız geliştirici / freelancer	3
+Ajans çalışanı	2
+Girişim kurucusu	1
+Junior geliştirici	1
+Native deneyimli kıdemli geliştirici	2
+Kurumsal ürün geliştiricisi	1
+Toplam	10
+Deneyim sonuçları
+Bulgular	Sonuç
+Daha önce çalışan veya kısmen çalışan widget geliştirmiş	6/10
+Widget’ı araştırmış ancak karmaşıklık nedeniyle başlamamış/vazgeçmiş	4/10
+Kotlin, Java veya Swift yazmak zorunda kalmış	6/10
+Native metin ve erişilebilirliği önemli gören	9/10
+Uygulama kapalıyken ilerleyen canlı sayacı önemli gören	7/10
+Canlı sayacı gerekli görmeyen	3/10
+Kabul edilebilir kurulum süresi
 
-**Hayır.**
+Verilen tahmini süreler:
 
-Kampanyanın bitiş saati gösterilebilir ancak saniyelik geri sayım gerekli değil. Dakika veya saat düzeyinde güncelleme yeterli olur.
+30 dakika
+60 dakika
+15–20 dakika
+120 dakika
+60 dakika
+20–30 dakika
+30 dakika
+60 dakika
+45–60 dakika
+30 dakika
 
-### 7. Homeframe’i hangi gerçek projede denemek isterdin?
+Yaklaşık medyan kabul edilebilir kurulum süresi 35–45 dakika aralığındadır.
 
-Favoriye alınan ürünlerde:
+Junior ve Expo ağırlıklı geliştiriciler 15–30 dakika beklerken, native deneyimli geliştiriciler güvenilir ve kontrol edilebilir bir altyapı karşılığında 1–2 saatlik kurulumu kabul etmektedir.
 
-* Fiyat düşüşü,
-* Stok durumu,
-* Kampanya bitiş zamanı,
-* Sepete dönme bağlantısı
+Tekrarlanan sorunlar
+1. Native proje yapılandırması
 
-gösteren bir widget üzerinde denerdim.
+En sık bahsedilen sorunlar:
 
-### 8. İlk çalışan widget’a ulaşmak için kabul edilebilir kurulum süresi nedir?
+Expo prebuild sürecine geçmek
+AndroidManifest ve Gradle dosyalarını değiştirmek
+Config plugin hazırlamak
+App Group veya paylaşılan depolama kurmak
+Native klasörleri sürdürmek
+2. Veri senkronizasyonu
 
-İlk prototip için **1 saat** kabul edilebilir.
+Katılımcıların çoğu widget arayüzünden çok şu konularda zorlanmaktadır:
 
-Üretim kullanımı için performans ve analytics desteğini de incelemek isterim.
+Uygulama kapalıyken veriyi güncel tutmak
+Widget ile React Native uygulaması arasında veri paylaşmak
+Arka plan güncelleme sınırlarını yönetmek
+Kullanıcı çıkış yaptığında eski veriyi temizlemek
+Güncelleme hatalarını izlemek
+3. İki ayrı kod tabanı
 
----
+React Native geliştiricileri aynı iş kurallarını TypeScript ile native tarafta tekrar yazmak istememektedir. Android ve iOS desteğinin ayrı uygulanması bakım maliyetini yükseltmektedir.
 
-## P09
+4. Kütüphane ve Expo sürüm uyumluluğu
 
-**Rol:** Açık kaynak React Native paket geliştiricisi
-**Deneyim:** 6 yıl React Native, Kotlin ve Swift deneyimli
-**Kanal:** Sentetik simülasyon
-**Tarih:** 26 Temmuz 2026 — Sentetik
+Özellikle daha az deneyimli geliştiriciler için şu belirsizlikler vazgeçme sebebidir:
 
-### 1. Daha önce uygulamana ana ekran widget’ı ekledin mi?
+Hangi Expo SDK sürümlerinin desteklendiği
+EAS Build ile uyumluluk
+Managed workflow desteği
+Güncel ve baştan sona çalışan örnek eksikliği
+Kütüphane güncellenmezse projenin ne olacağı
+5. Native çıktı beklentisi
 
-Evet. Kendi demo uygulamamda hem Android hem iOS widget geliştirdim.
+Deneyimli geliştiriciler Homeframe’in yalnızca soyut bir araç olmasını değil, oluşturduğu native kaynakların görülebilir ve düzenlenebilir olmasını beklemektedir.
 
-### 2. Nerede zorlandın veya neden vazgeçtin?
+Canlı sayaç kullanım senaryoları
 
-En zor bölüm ortak bir JavaScript API’sini iki farklı platform modeline uyarlamaktı.
+Canlı sayaç isteyen katılımcıların verdiği senaryolar:
 
-Android RemoteViews ile iOS WidgetKit aynı yetenekleri ve yaşam döngüsünü sunmuyor.
+Pomodoro ve çalışma süresi
+Antrenman ve dinlenme süresi
+Açık artırmanın bitişi
+Sınava kalan süre
+Rezervasyon başlangıcı
+Toplu taşıma kalkış zamanı
+Teslimat penceresi
+Otopark süresi
+Abonelik veya hedef tarihi
+Oruç süresi
 
-### 3. Kotlin/Java/Swift yazmak zorunda kaldın mı?
+Bu soruda “canlı sayaç” kavramının görüşmelerde daha net tanımlanması gerekir. Katılımcıya aşağıdaki ayrım ayrıca sorulabilir:
 
-Evet. Kotlin, Swift ve native module köprü kodu yazdım.
+Uygulama kapalıyken sistem tarafından görsel olarak ilerletilen geri sayım yeterli mi, yoksa widget verisinin her saniye arka planda yeniden hesaplanması mı gerekiyor?
 
-### 4. Kullandığın çözümün en büyük sınırlaması neydi?
+Homeframe için öne çıkan ürün gereksinimleri
 
-Platform farklarını fazla gizlemesiydi. Desteklenmeyen özelliklerde açık hata vermek yerine bazı durumlarda sessizce başarısız oluyordu.
+görüşmelere göre Homeframe’in güçlü bir ilk sürümü şunları sağlamalıdır:
 
-### 5. Gerçek native metin ve erişilebilirlik önemli mi?
-
-Evet. Ayrıca semantik özelliklerin geliştirici tarafından özelleştirilebilmesi gerekir.
-
-### 6. Uygulama kapalıyken ilerleyen canlı sayaç senin için önemli mi? Hangi senaryoda?
-
-**Hayır.**
-
-Timer özelliği yararlı olabilir ancak ürünün ana vaadi olmamalı. İşletim sistemi sınırlamaları yanlış beklenti oluşturabilir.
-
-### 7. Homeframe’i hangi gerçek projede denemek isterdin?
-
-Açık kaynak bir örnek uygulamada:
-
-* Yapılacaklar listesi,
-* Takvim,
-* Alışkanlık takibi,
-* Zamanlayıcı
-
-widget’ları geliştirerek API kapsamını test etmek isterdim.
-
-### 8. İlk çalışan widget’a ulaşmak için kabul edilebilir kurulum süresi nedir?
-
-**20–30 dakika.**
-
-Tip güvenliği, hata mesajları ve üretilen native kodun görülebilmesi kurulum süresinden daha önemli olabilir.
-
----
-
-## P10
-
-**Rol:** Freelance etkinlik ve bilet uygulamaları geliştiricisi
-**Deneyim:** 3 yıl Expo, 1 yıl React Native bare workflow
-**Kanal:** Sentetik simülasyon
-**Tarih:** 26 Temmuz 2026 — Sentetik
-
-### 1. Daha önce uygulamana ana ekran widget’ı ekledin mi?
-
-Hayır. Bir konser uygulaması için istendi ancak teklif süresini ve maliyetini artıracağı için kapsamdan çıkardık.
-
-### 2. Nerede zorlandın veya neden vazgeçtin?
-
-Apple tarafında extension, App Group ve provisioning ayarları karmaşık geldi.
-
-Android tarafı daha anlaşılır görünüyordu ancak iki platformu da desteklemek gerektiği için başlamadım.
-
-### 3. Kotlin/Java/Swift yazmak zorunda kaldın mı?
-
-Araştırdığım çözümlerde Kotlin ve Swift kodu gerekiyordu. Native kod yazmadım ve özelliği kaldırdım.
-
-### 4. Kullandığın çözümün en büyük sınırlaması neydi?
-
-Expo projesinde tek komutla çalışmamasıydı. Native klasörlere manuel müdahale gerekiyordu.
-
-### 5. Gerçek native metin ve erişilebilirlik önemli mi?
-
-Evet. Etkinlik adı, mekan ve saat gibi bilgilerin ekran okuyucu tarafından okunabilmesi gerekir.
-
-### 6. Uygulama kapalıyken ilerleyen canlı sayaç senin için önemli mi? Hangi senaryoda?
-
-**Evet.**
-
-Konser veya etkinlik başlangıcına kalan süreyi göstermek için doğrudan kullanırdım.
-
-### 7. Homeframe’i hangi gerçek projede denemek isterdin?
-
-Etkinlik bileti uygulamasında:
-
-* Etkinlik adı,
-* Başlangıca kalan süre,
-* Mekan bilgisi,
-* Bileti açma düğmesi
-
-gösteren widget geliştirirdim.
-
-### 8. İlk çalışan widget’a ulaşmak için kabul edilebilir kurulum süresi nedir?
-
-Yaklaşık **10–15 dakika**.
-
-EAS Build ile uyumlu olması gerekir.
-
----
-
-# Sentetik sonuç tablosu
-
-| Katılımcı | Rol / deneyim                            | Önceki widget deneyimi         | En büyük sorun                      | Canlı sayaç | Deneme senaryosu            | Kurulum beklentisi |
-| --------- | ---------------------------------------- | ------------------------------ | ----------------------------------- | :---------: | --------------------------- | ------------------ |
-| P01       | Bağımsız Expo geliştiricisi              | Android prototipi geliştirdi   | Expo ve native veri senkronizasyonu |     Evet    | Namaz vaktine kalan süre    | 20 dk              |
-| P02       | Ajans teknik lideri                      | Android ve iOS geliştirdi      | App Group ve cihaz farklılıkları    |     Evet    | Teslimata kalan süre        | 30 dk              |
-| P03       | Junior Expo geliştiricisi                | Denedi, tamamlayamadı          | Native proje karmaşıklığı           |     Evet    | Pomodoro sayacı             | 10 dk              |
-| P04       | Native Android geçmişli RN geliştiricisi | Birden fazla widget geliştirdi | Arka plan ve güncelleme kısıtları   |     Evet    | Maça kalan süre             | 20–30 dk           |
-| P05       | Kıdemli iOS geliştiricisi                | WidgetKit deneyimli            | Timeline ve sınırlı RN kontrolü     |    Hayır    | Uçuş bilgisi                | 45 dk              |
-| P06       | Startup kurucusu                         | Araştırdı, vazgeçti            | İki platform için ayrı geliştirme   |     Evet    | Odaklanma sayacı            | 15 dk              |
-| P07       | Eğitim teknolojileri geliştiricisi       | Erişilebilir widget prototipi  | TalkBack ve VoiceOver semantiği     |     Evet    | Derse kalan süre            | 30 dk              |
-| P08       | E-ticaret RN geliştiricisi               | Proof of concept yaptı         | Veri yenileme sıklığı               |    Hayır    | Fiyat ve stok takibi        | 60 dk              |
-| P09       | Açık kaynak paket geliştiricisi          | Android ve iOS geliştirdi      | Platform farklarının gizlenmesi     |    Hayır    | Görev ve zamanlayıcı demosu | 20–30 dk           |
-| P10       | Freelance Expo geliştiricisi             | Araştırdı, kapsamdan çıkardı   | Extension ve native kurulum         |     Evet    | Etkinliğe kalan süre        | 10–15 dk           |
-
----
-
-# Sentetik sinyaller
-
-## Canlı sayaç
-
-* Sentetik “evet”: **7 / 10**
-* Sentetik “hayır”: **3 / 10**
-* Hedeflenen eşik: **6 / 10**
-
-Canlı sayaca olumlu yaklaşan personalar bunu şu senaryolarla ilişkilendirdi:
-
-1. Namaz vaktine kalan süre
-2. Teslimata kalan süre
-3. Pomodoro sayacı
-4. Maça kalan süre
-5. Odaklanma oturumu
-6. Derse veya sınava kalan süre
-7. Etkinlik başlangıcına kalan süre
-
-Deneyimli native geliştiriciler, işletim sistemi kısıtları nedeniyle “canlı” veya “gerçek zamanlı” ifadelerinin dikkatli kullanılmasını bekliyor.
-
-## Native kod ihtiyacı
-
-* Native kod yazmış veya yazması gerekmiş persona: **8 / 10**
-* Native kod nedeniyle vazgeçen persona: **3 / 10**
-* Xcode veya Android Studio’ya dokunmak istemeyen persona: **3 / 10**
-
-## Erişilebilirlik
-
-* Native metin ve erişilebilirliği önemli gören: **10 / 10**
-* Erişilebilirliği ürün seçiminde zorunlu gören: **3 / 10**
-
-Özellikle şu ihtiyaçlar tekrarlandı:
-
-* TalkBack ve VoiceOver desteği
-* Anlamlı okuma sırası
-* Gerçek native metin
-* Erişilebilirlik etiketleri
-* Dynamic Type
-* Geliştirici tarafından özelleştirilebilir semantik yapı
-
-## Kurulum süresi
-
-* 15 dakika veya altında bekleyen: **3 / 10**
-* 30 dakika veya altında bekleyen: **8 / 10**
-* 45–60 dakikayı kabul eden: **2 / 10**
-
-Medyan kabul edilebilir kurulum süresi yaklaşık **25 dakika**.
-
----
-
-# Sentetik ürün çıkarımları
-
-## 1. Homeframe’in ana rakibi başka bir paket değil, vazgeçme kararıdır
-
-Personalardan dördü widget fikrini araştırmış ancak geliştirme maliyeti veya native karmaşıklık nedeniyle tamamlamamıştır.
-
-Bu nedenle ürün mesajı yalnızca:
-
-> React Native ile widget geliştirin.
-
-olmamalıdır.
-
-Daha güçlü bir mesaj:
-
-> Expo veya React Native uygulamanızda native widget’a, ayrı bir native özellik projesi yürütmeden ulaşın.
-
-olabilir.
-
-## 2. İlk değer süresi 30 dakikanın altında olmalıdır
-
-Çoğu persona ilk çalışan widget’ı yaklaşık 10–30 dakika içinde görmek istemektedir.
-
-İdeal başlangıç akışı:
-
-1. Paketi yükle
-2. Config plugin’i ekle
-3. Widget bileşenini tanımla
-4. Örnek veri gönder
-5. EAS veya local build al
-6. Widget’ı cihazda gör
-
-şeklinde olmalıdır.
-
-## 3. Canlı sayaç güçlü bir giriş özelliği olabilir
-
-Sentetik personaların yedisi canlı sayaç için somut bir kullanım senaryosu üretebilmiştir.
-
-Ancak pazarlama dili teknik olarak sınırlandırılmalıdır. Örneğin:
-
-> Uygulama kapalıyken sistem destekli zaman göstergeleri oluşturun.
-
-ifadesi, “saniye saniye gerçek zamanlı güncelleme” vaadinden daha güvenli olabilir.
-
-## 4. Erişilebilirlik temel mimari özelliği olmalıdır
-
-Native metin ve erişilebilirlik desteği sonradan eklenen bir özellik değil, renderer tasarımının parçası olmalıdır.
-
-İlk API tasarımında en azından şu alanlar bulunmalıdır:
-
-```ts
-<Text
-  accessibilityLabel="Etkinliğin başlamasına 2 saat kaldı"
-  accessibilityRole="text"
->
-  2 saat kaldı
-</Text>
-```
-
-## 5. İleri seviye kullanıcılar kontrol kaybetmek istememektedir
-
-Junior ve Expo odaklı geliştiriciler native detayların gizlenmesini isterken, deneyimli geliştiriciler oluşturulan native kodu incelemek istemektedir.
-
-Bu nedenle iki kullanım seviyesi değerlendirilebilir:
-
-* Basit deklaratif API
-* Native çıktıyı özelleştirme veya genişletme katmanı
-
-## 6. En güçlü başlangıç kullanım alanları zaman tabanlı ürünlerdir
-
-Sentetik görüşmelerde en sık tekrar eden alanlar:
-
-* Pomodoro ve odaklanma
-* Etkinlik ve bilet
-* Namaz ve günlük zaman planlama
-* Eğitim ve ders takibi
-* Teslimat
-* Spor
-* Uçuş ve seyahat
-
----
-
-# S0 kapı özeti
-
-* Sentetik persona simülasyonu: **10 / 10**
-* Sentetik canlı sayaç “evet”: **7 / 6 gerekli**
-* Gerçek tamamlanan görüşme: **0 / 10**
-* Gerçek canlı sayaç “evet”: **0 / 6**
-* Gerçek görüşme kanıtı: **Yok**
-* Kapı durumu: **AÇIK — gerçek geliştirici yanıtları bekleniyor**
-
-> Sentetik cevaplar ürün yönü ve görüşme hazırlığı için kullanılabilir. S0 kapısının kapanması için gerçek Expo veya React Native geliştiricilerinden toplanmış, tarih ve kanal bilgisi bulunan yanıtlar gerekir.
+Expo config plugin ile tekrarlanabilir kurulum
+EAS Build desteği
+React/TypeScript benzeri tanımlama modeli
+Gerçek native metin ve erişilebilirlik
+Uygulama ile widget arasında hazır veri paylaşım katmanı
+Uygulama kapalıyken çalışan geri sayım bileşeni
+Farklı widget boyutları için responsive yerleşim
+Üretilen Kotlin/native kaynaklarını inceleme ve düzenleme imkânı
+Açık Expo SDK uyumluluk tablosu
+Çalışan örnek projeler ve hata ayıklama ekranı
