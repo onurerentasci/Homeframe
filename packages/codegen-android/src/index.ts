@@ -1,4 +1,1 @@
-/**
- * IR-to-Android code generation begins with the disposable S1 feasibility spike.
- */
-export {};
+export { generateAndroidLayout } from "./spike/generate-android-layout.js";

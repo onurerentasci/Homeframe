@@ -1,0 +1,20 @@
+{
+  "expo": {
+    "name": "Homeframe S1",
+    "slug": "homeframe-s1",
+    "version": "0.0.0",
+    "orientation": "portrait",
+    "android": {
+      "package": "dev.homeframe.basic"
+    },
+    "plugins": [
+      "@homeframe/expo-plugin"
+    ],
+    "extra": {
+      "eas": {
+        "projectId": "b8ff173c-b91b-4cc1-9c40-676eebe33fc4"
+      }
+    },
+    "owner": "onurerentasci"
+  }
+}

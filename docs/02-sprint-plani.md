@@ -67,7 +67,8 @@ npm ad kullanılabilirlik ve yayın politikası kaydı.
 
 **Kapsam**
 * Elle yazılmış bir Expo development build içinde `AppWidgetProvider` + `RemoteViews` çalıştır.
-* `Chronometer` ile geri sayım; `am force-stop` sonrası davranışı ölç.
+* `Chronometer` ile geri sayım; normal proses ölümü ile açık `am force-stop` davranışlarını ayrı ayrı ölç.
+* Açık `force-stop` sırasında launcher yer tutucusunu kabul et; uygulama yeniden açıldığında mutlak `endAt` değerinden otomatik kurtarmayı doğrula.
 * Reboot sonrası mutlak `endAt` epoch değerinden sayacı yeniden kur.
 * İki widget instance'ına farklı veri bas.
 * EAS release build al.
@@ -82,7 +83,7 @@ npm ad kullanılabilirlik ve yayın politikası kaydı.
 | HF-S1-T02 | `expo prebuild` 3 kez çalıştırıldıktan sonra `git diff --exit-code` temiz | L3 |
 | HF-S1-T03 | `RemoteViews.apply()` sonucu beklenen view ağacını üretir (Robolectric) | L4 |
 | HF-S1-T04 | Widget, RN paketleyicisi kapalıyken render ediliyor (instrumented) | L5 |
-| HF-S1-T05 | `adb shell am force-stop` sonrası 60 sn'de Chronometer değeri **60 sn ilerlemiş** (scripted, ekran kaydı) | L6 |
+| HF-S1-T05 | `adb shell am force-stop` sonrası launcher yer tutucusu; uygulama yeniden açıldığında mutlak `endAt` değerinden otomatik kurtarma (±2 sn, scripted kanıt) | L6 |
 | HF-S1-T06 | `adb reboot` sonrası sayaç doğru değerden devam ediyor (±2 sn) | L6 |
 | HF-S1-T07 | İki instance farklı `title` gösteriyor (UiAutomator) | L5 |
 | HF-S1-T08 | EAS production build başarılı + cihazda widget çalışıyor | L6 |
@@ -90,9 +91,49 @@ npm ad kullanılabilirlik ve yayın politikası kaydı.
 
 **Çıkış kriterleri — GO/NO-GO**
 - [ ] **T01, T02, T03, T04 geçti.** (Kritik dörtlü — biri bile başarısızsa **proje iptal**.)
-- [ ] T05 ve T06 geçti → tez korunur. Geçmezse konumlandırma "canlı geri sayım" iddiasından arındırılıp iş planı §1/§6 yeniden yazılmadan S2'ye geçilmez.
+- [ ] T05 ve T06 geçti → açık `force-stop` sonrası yeniden açılışla kurtarma ve reboot restore sözleşmesi korunur. Geçmezse iş planı §1/§6 yeniden yazılmadan S2'ye geçilmez.
 - [ ] T07, T08, T09 sonuçları raporda kayıtlı (başarısızlık S1'i bloke etmez, backlog'a düşer).
 - [ ] `docs/reports/sprint-01-go-no-go.md` yazılı ve karar (GO / PIVOT / NO-GO) imzalı.
+
+---
+
+## S1.1 — PIVOT Düzeltme Sprinti · **GO / NO-GO**
+
+**Amaç:** Açık `force-stop` davranışını ürün sözleşmesinde doğru sınırlamak,
+uygulama yeniden açılışında native recovery sağlamak ve TalkBack semantiğini
+S2 öncesinde kapatmak.
+
+**Kapsam**
+* Normal proses ölümü, reboot ve kullanıcı tarafından açık `force-stop`
+  senaryolarını ayrı ürün sözleşmeleri olarak belgelemek.
+* Açık `force-stop` sırasında launcher yer tutucusunu kabul etmek; uygulama
+  yeniden açıldığında mutlak `endAt` değerinden native olarak yeniden render
+  etmek.
+* Başlık ve native, yerelleştirilmiş `Chronometer` süresini tek TalkBack
+  odağında toplamak; saniyelik gereksiz anons üretmemek.
+* Erişilebilirlik XML/codegen çıktısını golden ve Robolectric testleriyle
+  kilitlemek.
+
+**Yazılacak testler**
+
+| ID | Test | Katman |
+| --- | --- | --- |
+| HF-S1.1-T01 | Başlık ve `MM:SS` aynı ekran okuyucu grubunda; süre native doğal dil açıklamasına sahip | L2+L4 |
+| HF-S1.1-T02 | `HH:MM:SS` süre saat, dakika ve saniye semantiği üretiyor | L4 |
+| HF-S1.1-T03 | Bir günü aşan sayaç doğal uzun süre semantiği üretiyor | L4 |
+| HF-S1.1-T04 | Boş veya hatalı başlık güvenli fallback kullanıyor | L4 |
+| HF-S1.1-T05 | Açık `force-stop` sonrasında yer tutucu; uygulama açılışında mutlak `endAt` recovery (±2 sn) | L6 |
+| HF-S1.1-T06 | Reboot sonrasında mutlak `endAt` restore (±2 sn) | L6 |
+| HF-S1.1-T07 | İki instance bağımsız başlık ve erişilebilirlik süresi üretiyor | L4+L5 |
+| HF-S1.1-T08 | Fiziksel cihazda TalkBack başlık ve kalan süreyi tek anons olarak okuyor; görsel değer eşleşiyor | L7 |
+
+**Çıkış kriterleri**
+- [x] T01–T08 PASS.
+- [x] `pnpm gate` PASS; coverage eşikleri düşmedi.
+- [x] Emülatör ve en az bir fiziksel cihaz kanıtı
+  `docs/reports/assets/S01-1/` altında.
+- [x] `docs/reports/sprint-01-1-pivot-fix.md` **PASS / GO** olarak imzalı.
+- [x] S2 geçiş kilidi açıldı.
 
 ---
 
@@ -208,7 +249,7 @@ npm ad kullanılabilirlik ve yayın politikası kaydı.
 
 | ID | Test | Katman |
 | --- | --- | --- |
-| HF-S5-T01 | `am force-stop` sonrası Chronometer ilerlemeye devam ediyor | L6 |
+| HF-S5-T01 | `am force-stop` sırasında yer tutucu kabul ediliyor; uygulama yeniden açılınca Chronometer mutlak `endAt` değerinden kurtarılıyor (±2 sn) | L6 |
 | HF-S5-T02 | `adb reboot` sonrası sayaç mutlak `endAt`'ten doğru kuruluyor (±2 sn) | L6 |
 | HF-S5-T03 | `adb shell dumpsys deviceidle force-idle` altında widget donmuyor | L6 |
 | HF-S5-T04 | Saat dilimi değişince gösterilen zaman yeni dilime göre düzeliyor | L5 |
@@ -229,7 +270,7 @@ npm ad kullanılabilirlik ve yayın politikası kaydı.
 **Amaç:** SDK'yı "demo" olmaktan çıkarıp yayınlanabilir yapmak.
 
 **Kapsam**
-* TalkBack ve `contentDescription` her primitive'de.
+* TalkBack semantiği: metin primitive'lerinde native metin semantiği, görsel primitive'lerde açık erişilebilirlik açıklaması ve birleşik sayaç grupları.
 * Açık/koyu tema, dinamik renk (Material You) uyumu.
 * Widget resize davranışı.
 * Error ve empty state primitive'leri.
@@ -240,7 +281,7 @@ npm ad kullanılabilirlik ve yayın politikası kaydı.
 
 | ID | Test | Katman |
 | --- | --- | --- |
-| HF-S6-T01 | Her primitive `contentDescription` üretiyor; üretmeyen primitive **build hatası** | L2 |
+| HF-S6-T01 | Her primitive erişilebilir semantik üretiyor; metin olmayan erişilebilir primitive açıklama üretmezse **build hatası** | L2 |
 | HF-S6-T02 | Accessibility Scanner / espresso-accessibility ihlali sıfır | L7 |
 | HF-S6-T03 | Koyu temada kontrast oranı ≥ 4.5:1 (üretilen renkler üzerinden hesap) | L2 |
 | HF-S6-T04 | Tema değişince widget yeniden renkleniyor (instrumented) | L5 |

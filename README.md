@@ -4,7 +4,7 @@
 
 Homeframe, Expo ve React Native geliştiricilerinin Android ana ekran widget'larını **Kotlin veya XML yazmadan**, TypeScript ile geliştirmesini sağlayan açık kaynak bir SDK'dır.
 
-Mevcut RN çözümlerinin bir kısmı uygulama arayüzünü **bitmap** olarak render edip widget'ta görüntü olarak gösterir. Homeframe bunun yerine widget tanımını gerçek Android **`RemoteViews`** ağacına derler: `TextView`, `ImageView`, `ProgressBar`, `Chronometer`. Sonuç: uygulama prosesi kapalıyken bile ilerleyen canlı geri sayım, gerçek metin semantiği, TalkBack desteği ve öngörülebilir launcher davranışı.
+Mevcut RN çözümlerinin bir kısmı uygulama arayüzünü **bitmap** olarak render edip widget'ta görüntü olarak gösterir. Homeframe bunun yerine widget tanımını gerçek Android **`RemoteViews`** ağacına derler: `TextView`, `ImageView`, `ProgressBar`, `Chronometer`. Sonuç: normal proses ölümünde ilerleyen canlı geri sayım, reboot ve uygulama yeniden açılışında mutlak bitiş zamanından kurtarma, gerçek metin semantiği, TalkBack desteği ve öngörülebilir launcher davranışı. Kullanıcının açık `force-stop` işlemi sırasında launcher yer tutucu gösterebilir; canlılık garantisi uygulama yeniden açıldığında devam eder.
 
 ```tsx
 export default defineWidget({
@@ -21,10 +21,11 @@ export default defineWidget({
 
 ## Durum
 
-**S0 — ön doğrulama ve iskelet devam ediyor.** Monorepo ve kalite kapısı
-kurulmuştur. Ürün koduna geçiş, `docs/02-sprint-plani.md` içindeki S0 çıkış
-kriterleri tamamlandıktan sonra; ürün taahhüdü ise **S1 fizibilite kapısı**
-geçildikten sonra yapılır.
+**S1.1 PIVOT düzeltme kapısı PASS / GO.** Native fizibilite, açık
+`force-stop` sonrası recovery, reboot restore ve TalkBack fiziksel cihazda
+kanıtlandı. İmzalı rapor:
+[docs/reports/sprint-01-1-pivot-fix.md](docs/reports/sprint-01-1-pivot-fix.md).
+S2 DSL ve ara temsil sprinti başlayabilir.
 
 ## Geliştirme
 

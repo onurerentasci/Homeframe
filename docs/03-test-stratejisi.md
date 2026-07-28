@@ -58,7 +58,7 @@ Widget host üzerinden gerçek bağlama, güncelleme, deep link, resize, tema de
 
 ### L6 — Fiziksel cihaz
 Aşağıdakiler **yalnızca** burada kanıtlanır:
-* `am force-stop` sonrası Chronometer ilerlemesi
+* `am force-stop` sırasında yer tutucu ve uygulama yeniden açılışı sonrası mutlak `endAt` değerinden kurtarma
 * `adb reboot` sonrası restore
 * Doze davranışı
 * Launcher farklılıkları (Samsung One UI, Xiaomi HyperOS/MIUI, Pixel)
@@ -76,7 +76,7 @@ Aşağıdakiler **yalnızca** burada kanıtlanır:
 Kural: **bir davranış emülatörde geçse bile en az bir fiziksel cihazda tekrarlanmadan "geçti" sayılmaz** (bkz. kurallar §K8).
 
 ### L7 — Erişilebilirlik
-`contentDescription` üretimi codegen seviyesinde zorunludur: üretmeyen primitive **build hatası** verir. Ek olarak espresso-accessibility ihlali sıfır olmalı ve TalkBack okuması sprint başına bir kez kayda alınmalıdır.
+Codegen her primitive için doğru erişilebilirlik semantiğini üretmek zorundadır. `TextView` ve `Chronometer` native, yerelleştirilmiş metin semantiğini korur; bunlara statik ve zamanla eskiyen bir `contentDescription` yazılmaz. Metin olmayan erişilebilir primitive'ler açıklama üretmezse **build hatası** verilir. Birleşik sayaç kökü `screenReaderFocusable` ile başlık ve kalan süreyi tek odakta toplar. Ek olarak espresso-accessibility ihlali sıfır olmalı ve TalkBack okuması sprint başına bir kez kayda alınmalıdır.
 
 ### L8 — Görsel regresyon (S12)
 Preview render'ı ile cihaz ekran görüntüsü arasındaki fark ≤ %2 piksel. Baseline güncellemesi otomatik değil, PR incelemeli.

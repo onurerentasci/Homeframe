@@ -51,7 +51,7 @@ Her bug için önce onu gösteren başarısız test yazılır (`HF-BUG-<issue#>`
 Yaşam döngüsü, geri sayım, launcher ve restore davranışları emülatörde geçse bile **en az bir fiziksel cihazda** tekrarlanmadan "geçti" sayılmaz. S5 ve S7'de bu **iki farklı üreticinin cihazı** olmak zorundadır. Commit mesajında `(CİHAZDA doğrulandı)` ibaresi ve rapora video/log eklenir.
 
 ### K9 — Erişilebilirlik pazarlık konusu değildir
-`contentDescription` üretmeyen primitive **build hatası** verir. Erişilebilirlik ihlali borç olarak taşınamaz; PASS-WITH-DEBT kapsamına giremez.
+Her primitive doğru erişilebilirlik semantiğini üretir. Native metin ve `Chronometer` semantiği statik `contentDescription` ile ezilmez; metin olmayan erişilebilir primitive açıklama üretmezse **build hatası** verir. Erişilebilirlik ihlali borç olarak taşınamaz; PASS-WITH-DEBT kapsamına giremez.
 
 ### K10 — Kapsam ratchet
 Kapsam eşikleri ([03-test-stratejisi.md §3](03-test-stratejisi.md)) yalnızca yükselir. Eşiği düşüren PR kırmızıdır. Eşik düşürmek ayrı bir PR, ayrı bir gerekçe ve rapora not gerektirir.
@@ -84,7 +84,7 @@ Borç olamayacak maddeler: erişilebilirlik (K9), idempotency (K12), kapsam eşi
 ### K16 — S1 özel kuralı: proje iptal edilebilir
 İş planı §13'teki **kritik dörtlü** (statik IR · IR→XML · idempotent prebuild · RN'siz render) başarısız olursa proje SDK olarak sürdürülemez; **NO-GO** verilir ve karar `docs/reports/sprint-01-go-no-go.md` içine gerekçesiyle yazılır. Bu karar "biraz daha deneyelim" ile ertelenemez; erteleme ancak yazılı yeni bir hipotez ve zaman kutusu ile mümkündür.
 
-Chronometer (madde 5) ve reboot restore (madde 6) başarısız olursa proje devam eder ama **konumlandırma yeniden yazılmadan** S2'ye geçilmez.
+Normal proses ölümü ve açık `force-stop` sonrası yeniden açılışla kurtarma (madde 5) veya reboot restore (madde 6) başarısız olursa proje devam eder ama **konumlandırma yeniden yazılmadan** S2'ye geçilmez.
 
 ---
 

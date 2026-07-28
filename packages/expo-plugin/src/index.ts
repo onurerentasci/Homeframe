@@ -1,4 +1,5 @@
-/**
- * Expo config-plugin behavior will be implemented and proven idempotent in S1.
- */
-export {};
+export {
+  runPrebuildIdempotencyCheck,
+  type PrebuildIdempotencyOptions,
+  type PrebuildIdempotencyResult,
+} from "./spike/verify-prebuild-idempotency.js";

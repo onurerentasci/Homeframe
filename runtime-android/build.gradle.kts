@@ -1,22 +1,30 @@
 plugins {
-    `java-library`
+    id("com.android.library")
 }
 
 group = "dev.homeframe"
 version = "0.0.0"
 
-java {
-    toolchain {
-        languageVersion = JavaLanguageVersion.of(17)
+android {
+    namespace = "dev.homeframe.runtime"
+    compileSdk = 36
+
+    defaultConfig {
+        minSdk = 26
+    }
+
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
+    }
+
+    testOptions {
+        unitTests.isIncludeAndroidResources = true
     }
 }
 
 dependencies {
-    testImplementation(platform("org.junit:junit-bom:5.12.2"))
-    testImplementation("org.junit.jupiter:junit-jupiter")
-    testRuntimeOnly("org.junit.platform:junit-platform-launcher")
-}
-
-tasks.test {
-    useJUnitPlatform()
+    testImplementation("androidx.test:core:1.7.0")
+    testImplementation("junit:junit:4.13.2")
+    testImplementation("org.robolectric:robolectric:4.16")
 }

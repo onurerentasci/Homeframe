@@ -1,0 +1,26 @@
+{
+  "irVersion": 1,
+  "widget": {
+    "name": "EventCountdown",
+    "layout": {
+      "type": "column",
+      "padding": 16,
+      "children": [
+        {
+          "type": "text",
+          "id": "title",
+          "value": {
+            "field": "title"
+          }
+        },
+        {
+          "type": "countdown",
+          "id": "countdown",
+          "endAt": {
+            "field": "targetAt"
+          }
+        }
+      ]
+    }
+  }
+}

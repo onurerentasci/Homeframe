@@ -26,4 +26,13 @@ export default tseslint.config(
       "@typescript-eslint/consistent-type-imports": "error",
     },
   },
+  {
+    files: [
+      "packages/expo-plugin/app.plugin.cjs",
+      "packages/expo-plugin/app.plugin.js",
+    ],
+    rules: {
+      "@typescript-eslint/no-require-imports": "off",
+    },
+  },
 );

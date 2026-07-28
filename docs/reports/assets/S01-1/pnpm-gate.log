@@ -1,0 +1,98 @@
+$ pnpm lint && pnpm typecheck && pnpm test:unit && pnpm test:plugin && pnpm test:android && pnpm test:device && pnpm coverage:check
+$ eslint . --max-warnings 0 && node scripts/check-test-policy.mjs
+Test politikası: skip/only/@Ignore bulunmadı.
+$ tsc --noEmit
+$ vitest run --passWithNoTests
+
+ RUN  v4.1.10 /Users/tasci/MyCode/Homeframe
+
+
+ Test Files  3 passed (3)
+      Tests  4 passed (4)
+   Start at  00:29:46
+   Duration  1.88s (transform 45ms, setup 0ms, import 69ms, tests 2.77s, environment 0ms)
+
+$ vitest run --passWithNoTests packages/expo-plugin
+
+ RUN  v4.1.10 /Users/tasci/MyCode/Homeframe
+
+
+ Test Files  1 passed (1)
+      Tests  1 passed (1)
+   Start at  00:29:48
+   Duration  1.85s (transform 11ms, setup 0ms, import 19ms, tests 1.74s, environment 0ms)
+
+$ ./gradlew test
+> Task :runtime-android:preBuild UP-TO-DATE
+> Task :runtime-android:preDebugBuild UP-TO-DATE
+> Task :runtime-android:generateDebugResources UP-TO-DATE
+> Task :runtime-android:packageDebugResources UP-TO-DATE
+> Task :runtime-android:processDebugNavigationResources UP-TO-DATE
+> Task :runtime-android:parseDebugLocalResources UP-TO-DATE
+> Task :runtime-android:generateDebugRFile UP-TO-DATE
+> Task :runtime-android:compileDebugKotlin NO-SOURCE
+> Task :runtime-android:javaPreCompileDebug UP-TO-DATE
+> Task :runtime-android:compileDebugJavaWithJavac UP-TO-DATE
+> Task :runtime-android:bundleLibRuntimeToJarDebug UP-TO-DATE
+> Task :runtime-android:bundleLibCompileToJarDebug UP-TO-DATE
+> Task :runtime-android:preDebugUnitTestBuild UP-TO-DATE
+> Task :runtime-android:writeDebugAarMetadata UP-TO-DATE
+> Task :runtime-android:checkDebugUnitTestAarMetadata UP-TO-DATE
+> Task :runtime-android:mapDebugSourceSetPaths UP-TO-DATE
+> Task :runtime-android:compileDebugLibraryResources UP-TO-DATE
+> Task :runtime-android:mapDebugUnitTestSourceSetPaths UP-TO-DATE
+> Task :runtime-android:generateDebugUnitTestResources UP-TO-DATE
+> Task :runtime-android:mergeDebugUnitTestResources UP-TO-DATE
+> Task :runtime-android:extractDeepLinksDebug UP-TO-DATE
+> Task :runtime-android:processDebugManifest UP-TO-DATE
+> Task :runtime-android:processDebugUnitTestManifest UP-TO-DATE
+> Task :runtime-android:processDebugUnitTestResources UP-TO-DATE
+> Task :runtime-android:compileDebugUnitTestKotlin NO-SOURCE
+> Task :runtime-android:javaPreCompileDebugUnitTest UP-TO-DATE
+> Task :runtime-android:compileDebugUnitTestJavaWithJavac UP-TO-DATE
+> Task :runtime-android:generateDebugUnitTestAssets UP-TO-DATE
+> Task :runtime-android:generateDebugAssets UP-TO-DATE
+> Task :runtime-android:mergeDebugAssets UP-TO-DATE
+> Task :runtime-android:mergeDebugUnitTestAssets UP-TO-DATE
+> Task :runtime-android:packageDebugUnitTestForUnitTest UP-TO-DATE
+> Task :runtime-android:generateDebugUnitTestConfig UP-TO-DATE
+> Task :runtime-android:processDebugJavaRes NO-SOURCE
+> Task :runtime-android:processDebugUnitTestJavaRes NO-SOURCE
+> Task :runtime-android:testDebugUnitTest UP-TO-DATE
+> Task :runtime-android:test UP-TO-DATE
+> Task :test UP-TO-DATE
+
+BUILD SUCCESSFUL in 414ms
+27 actionable tasks: 27 up-to-date
+Consider enabling configuration cache to speed up this build: https://docs.gradle.org/9.3.1/userguide/configuration_cache_enabling.html
+$ node scripts/report-unavailable-stage.mjs device
+test:device — PASS (S1.1): force-stop recovery 0 sn, reboot 1 sn, TalkBack başlık+süre kanıtlandı.
+$ pnpm coverage
+$ vitest run --coverage --passWithNoTests
+
+ RUN  v4.1.10 /Users/tasci/MyCode/Homeframe
+      Coverage enabled with v8
+
+
+ Test Files  3 passed (3)
+      Tests  4 passed (4)
+   Start at  00:29:52
+   Duration  2.07s (transform 40ms, setup 0ms, import 64ms, tests 3.12s, environment 0ms)
+
+ % Coverage report from v8
+-------------------|---------|----------|---------|---------|-------------------
+File               | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s 
+-------------------|---------|----------|---------|---------|-------------------
+All files          |    87.5 |     82.5 |   94.11 |   87.09 |                   
+ ...roid/src/spike |   83.33 |    88.46 |     100 |   83.33 |                   
+  ...oid-layout.ts |   83.33 |    88.46 |     100 |   83.33 | 24,36,46          
+ ...ugin/src/spike |   89.13 |    71.42 |   91.66 |   88.63 |                   
+  ...dempotency.ts |   89.13 |    71.42 |   91.66 |   88.63 | 38,53,80,87,100   
+-------------------|---------|----------|---------|---------|-------------------
+
+=============================== Coverage summary ===============================
+Statements   : 87.5% ( 56/64 )
+Branches     : 82.5% ( 33/40 )
+Functions    : 94.11% ( 16/17 )
+Lines        : 87.09% ( 54/62 )
+================================================================================

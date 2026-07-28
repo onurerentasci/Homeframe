@@ -1,5 +1,6 @@
 plugins {
     base
+    id("com.android.library") version "9.1.1" apply false
 }
 
 tasks.register("test") {

@@ -1,12 +1,12 @@
 package dev.homeframe.runtime;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.Assert.assertTrue;
 
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 
-final class RuntimeTestRunnerSmokeTest {
+public final class RuntimeTestRunnerSmokeTest {
     @Test
-    void gradleRunsTestsOnJava17() {
-        assertEquals(17, Runtime.version().feature());
+    public void gradleRunsTestsOnJava17() {
+        assertTrue(System.getProperty("java.version").startsWith("17"));
     }
 }

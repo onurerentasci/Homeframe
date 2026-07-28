@@ -11,7 +11,7 @@ Homeframe, Expo ve React Native geliştiricilerinin Android ana ekran widget'lar
 
 Mevcut React Native çözümlerinin önemli bir kısmı uygulama arayüzünü bitmap olarak oluşturup widget içerisinde görüntü olarak gösterir. Bu yaklaşım canlı geri sayım, gerçek metin semantiği, erişilebilirlik, doğal Android bileşenleri ve uygulama çalışmıyorken güncellenen öğeler konusunda sınırlamalar yaratır.
 
-Homeframe, widget tanımlarını gerçek Android `RemoteViews` bileşenlerine dönüştürür. Böylece `TextView`, `ImageView`, `ProgressBar` ve `Chronometer` gibi native bileşenler kullanılabilir; uygulama süreci çalışmıyorken devam eden geri sayımlar, TalkBack desteği ve daha güvenilir launcher davranışı sağlanır.
+Homeframe, widget tanımlarını gerçek Android `RemoteViews` bileşenlerine dönüştürür. Böylece `TextView`, `ImageView`, `ProgressBar` ve `Chronometer` gibi native bileşenler kullanılabilir; normal proses ölümünde devam eden geri sayımlar, reboot sonrası mutlak `endAt` değerinden kurtarma, TalkBack desteği ve daha güvenilir launcher davranışı sağlanır. Kullanıcının uygulamayı açıkça `force-stop` etmesi bu canlılık garantisinin dışındadır; launcher bu durumda yer tutucu gösterebilir. Uygulama yeniden açıldığında widget doğru kalan süreyle yeniden render edilir.
 
 İlk ürün Android odaklıdır. İkinci aşamada aynı widget tanımını Expo'nun resmî iOS widget altyapısına bağlayan bir adaptör geliştirilecek, böylece tek tanımdan iOS ve Android widget üretilebilecektir.
 
@@ -128,7 +128,7 @@ Desteklenen primitive'ler: `WColumn`, `WRow`, `WText`, `WImage`, `WSpacer`, `WPr
 * Birden fazla widget instance'ı ve instance bazlı veri saklama
 * Reboot sonrası durumun yeniden oluşturulması
 * Saat ve saat dilimi değişikliklerine uyum
-* TalkBack için `contentDescription`
+* TalkBack için native ve dinamik erişilebilirlik semantiği
 * Android development ve release (EAS) build desteği
 
 ### 4.2 Homeframe V2 — iOS adaptörü
@@ -210,7 +210,7 @@ Görüşme soruları: Daha önce RN uygulamanıza widget eklediniz mi? Hangi pla
 
 **Lansman içeriği — karşılaştırmalı demo:**
 Sol: bitmap widget, donmuş geri sayım, uygulama kapanınca güncellenmeyen değer.
-Sağ: Homeframe native widget, canlı `Chronometer`, uygulama çalışmıyorken devam eden sayaç, TalkBack ile okunan metin.
+Sağ: Homeframe native widget, canlı `Chronometer`, normal proses ölümünde devam eden sayaç, reboot ve uygulama yeniden açılışında kurtarma, TalkBack ile okunan metin.
 
 **Ana mesaj:** *Build real Android widgets for Expo — without Kotlin, XML or bitmap rendering.*
 
@@ -302,7 +302,7 @@ Sprint **S1** sonunda aşağıdaki maddeler kanıtlanmalıdır:
 | 2 | Ara temsilden native Android XML üretilebiliyor | ✅ |
 | 3 | Expo config plugin tekrar tekrar çalıştırıldığında projeyi bozmuyor | ✅ |
 | 4 | Widget, React Native runtime çalışmadan render edilebiliyor | ✅ |
-| 5 | Native `Chronometer`, uygulama prosesi kapalıyken (force-stop) ilerliyor | |
+| 5 | Native `Chronometer` normal proses ölümünde ilerliyor; açık `force-stop` sonrasında uygulama yeniden açılınca mutlak `endAt` değerinden kurtarılıyor | |
 | 6 | Reboot sonrası mutlak bitiş tarihinden sayaç yeniden oluşturuluyor | |
 | 7 | Birden fazla widget instance'ı farklı veri gösterebiliyor | |
 | 8 | EAS production build başarılı | |
@@ -310,7 +310,7 @@ Sprint **S1** sonunda aşağıdaki maddeler kanıtlanmalıdır:
 | 10 | Vakity widget'ı Homeframe primitive'leriyle yeniden oluşturulabiliyor | |
 
 **Kritik işaretli ilk dört madde başarısız olursa proje SDK olarak sürdürülebilir değildir ve iptal edilir.**
-5. ve 6. maddeler ürün tezinin kalbidir; geçmezlerse konumlandırma "canlı geri sayım" iddiasından arındırılarak yeniden yazılmalıdır.
+5. ve 6. maddeler ürün tezinin kalbidir; normal proses ölümü, açık `force-stop` sonrası yeniden açılışla kurtarma veya reboot restore başarısız olursa konumlandırma yeniden yazılmalıdır.
 
 Karar kaydı: `docs/reports/sprint-01-go-no-go.md`.
 
